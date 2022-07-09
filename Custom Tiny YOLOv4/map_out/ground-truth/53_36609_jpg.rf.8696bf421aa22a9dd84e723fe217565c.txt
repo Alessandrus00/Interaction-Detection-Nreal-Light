@@ -1,0 +1,7 @@
+low voltage board 118 250 283 415
+pliers 257 2 315 165
+welder station 334 2 416 66
+working area 22 237 373 416
+oscilloscope 2 2 105 35
+hand 276 364 346 415
+hand 83 394 155 416

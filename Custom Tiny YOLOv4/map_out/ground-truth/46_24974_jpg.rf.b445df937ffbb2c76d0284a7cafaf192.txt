@@ -1,0 +1,6 @@
+oscilloscope 111 226 274 391
+pliers 353 399 415 416
+power supply 2 257 22 416
+socket 36 262 92 323
+socket 100 258 117 321
+hand 162 275 226 404

@@ -1,0 +1,7 @@
+register 2 256 229 416
+power supply 116 16 182 143
+socket 190 77 237 141
+socket 251 108 301 186
+oscilloscope 300 83 417 259
+working area 317 321 416 415
+hand 1 361 25 411

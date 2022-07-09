@@ -1,0 +1,6 @@
+oscilloscope 115 172 320 351
+socket 2 120 40 208
+socket 64 134 139 219
+pliers 360 292 415 352
+screwdriver- 408 373 416 392
+hand 263 198 343 384

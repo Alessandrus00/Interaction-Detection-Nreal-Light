@@ -1,0 +1,7 @@
+oscilloscope 56 209 214 386
+pliers 279 334 382 404
+welder station 379 153 416 341
+socket 3 277 37 345
+socket 47 273 63 335
+oscilloscope probe tip 226 404 231 414
+hand 105 301 191 415

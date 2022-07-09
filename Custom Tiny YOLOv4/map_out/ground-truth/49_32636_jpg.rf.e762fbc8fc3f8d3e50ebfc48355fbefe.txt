@@ -1,0 +1,10 @@
+welder probe tip 198 265 416 339
+high voltage board 149 215 213 415
+screwdriver- 278 316 412 417
+working area 2 230 310 414
+oscilloscope 2 30 62 196
+socket 301 26 325 82
+socket 339 11 395 76
+welder base 378 18 417 200
+welder station 237 5 312 157
+hand 359 216 417 405

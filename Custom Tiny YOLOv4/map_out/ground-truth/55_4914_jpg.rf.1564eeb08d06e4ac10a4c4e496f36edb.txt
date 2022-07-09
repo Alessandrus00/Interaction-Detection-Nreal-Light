@@ -1,0 +1,5 @@
+high voltage board 198 274 416 415
+oscilloscope probe tip 219 10 301 117
+working area 71 210 416 414
+hand 98 259 216 415
+hand 251 296 377 414

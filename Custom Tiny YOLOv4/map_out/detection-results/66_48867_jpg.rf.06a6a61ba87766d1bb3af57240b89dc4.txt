@@ -1,0 +1,254 @@
+power supply 0.0051 74 66 88 106
+power supply 0.0046 374 2 415 106
+power supply 0.0039 0 66 20 139
+power supply 0.0035 225 186 300 316
+power supply 0.0033 16 67 63 125
+power supply 0.0030 8 186 286 419
+power supply 0.0022 186 -2 211 84
+power supply 0.0016 0 96 10 144
+power supply 0.0015 0 75 15 165
+power supply 0.0014 0 71 22 102
+power supply 0.0011 75 0 209 125
+power supply 0.0011 123 182 216 244
+oscilloscope 0.9983 75 2 212 134
+oscilloscope 0.0090 377 9 415 122
+oscilloscope 0.0036 41 254 257 408
+oscilloscope 0.0032 55 183 252 369
+oscilloscope 0.0020 0 71 22 102
+oscilloscope 0.0019 226 184 298 318
+oscilloscope 0.0018 74 66 88 106
+oscilloscope 0.0018 117 182 217 249
+oscilloscope 0.0016 16 67 63 125
+oscilloscope 0.0010 0 96 10 144
+welder station 0.9737 377 4 416 107
+welder station 0.0102 55 183 252 369
+welder station 0.0085 75 0 209 125
+welder station 0.0030 226 184 298 318
+welder station 0.0027 117 182 217 249
+welder station 0.0025 392 13 415 119
+welder station 0.0022 41 254 257 408
+welder station 0.0021 396 0 416 22
+welder station 0.0021 138 189 250 351
+welder station 0.0019 404 24 416 57
+welder station 0.0015 404 34 415 74
+welder station 0.0015 0 71 22 102
+welder station 0.0012 186 -2 211 84
+welder station 0.0011 74 66 88 106
+electric screwdriver 0.0170 368 291 418 421
+electric screwdriver 0.0163 101 201 245 382
+electric screwdriver 0.0127 27 187 322 417
+electric screwdriver 0.0089 333 243 417 418
+electric screwdriver 0.0055 221 182 309 319
+electric screwdriver 0.0054 7 55 67 118
+electric screwdriver 0.0040 73 62 83 106
+electric screwdriver 0.0017 362 251 417 365
+electric screwdriver 0.0014 0 71 22 102
+electric screwdriver 0.0012 56 265 279 405
+electric screwdriver 0.0011 0 58 25 118
+screwdriver- 0.0255 184 298 244 419
+screwdriver- 0.0116 110 296 298 420
+screwdriver- 0.0099 0 53 59 124
+screwdriver- 0.0086 210 214 243 277
+screwdriver- 0.0082 0 71 22 102
+screwdriver- 0.0076 225 186 300 316
+screwdriver- 0.0073 0 58 25 118
+screwdriver- 0.0065 197 290 232 400
+screwdriver- 0.0052 215 227 239 264
+screwdriver- 0.0048 73 62 83 106
+screwdriver- 0.0040 376 -4 414 97
+screwdriver- 0.0033 17 52 65 106
+screwdriver- 0.0033 49 206 255 396
+screwdriver- 0.0031 183 310 219 410
+screwdriver- 0.0030 123 182 216 244
+screwdriver- 0.0018 197 286 271 392
+screwdriver- 0.0017 138 189 250 351
+screwdriver- 0.0015 339 221 415 310
+screwdriver- 0.0013 125 173 140 194
+screwdriver- 0.0013 7 247 342 412
+screwdriver- 0.0010 212 216 242 249
+pliers 0.9801 363 270 416 415
+pliers 0.0469 379 331 412 419
+pliers 0.0141 334 209 415 403
+pliers 0.0121 339 221 415 310
+pliers 0.0070 215 227 239 264
+pliers 0.0051 366 272 412 321
+pliers 0.0045 210 214 243 277
+pliers 0.0040 212 216 242 249
+pliers 0.0037 334 310 415 416
+pliers 0.0035 75 0 209 125
+pliers 0.0028 73 62 83 106
+pliers 0.0027 226 184 298 318
+pliers 0.0023 390 352 415 422
+pliers 0.0022 7 55 67 118
+pliers 0.0022 55 183 252 369
+pliers 0.0015 138 189 250 351
+pliers 0.0015 118 190 217 273
+pliers 0.0014 377 9 415 122
+pliers 0.0013 367 280 388 318
+pliers 0.0012 388 283 416 407
+pliers 0.0012 361 254 417 340
+pliers 0.0012 110 296 298 420
+pliers 0.0011 172 308 242 415
+pliers 0.0011 41 254 257 408
+pliers 0.0011 125 173 140 194
+pliers 0.0011 0 71 22 102
+pliers 0.0010 197 290 232 400
+welder probe tip 0.0085 0 71 22 102
+welder probe tip 0.0051 0 53 59 124
+welder probe tip 0.0039 0 58 25 118
+welder probe tip 0.0039 225 186 300 316
+welder probe tip 0.0033 138 189 250 351
+welder probe tip 0.0033 49 206 255 396
+welder probe tip 0.0024 17 52 65 106
+welder probe tip 0.0019 73 62 83 106
+welder probe tip 0.0016 110 296 298 420
+welder probe tip 0.0015 7 247 342 412
+welder probe tip 0.0015 117 182 217 249
+welder probe tip 0.0010 94 1 229 140
+oscilloscope probe tip 0.0084 215 227 239 264
+oscilloscope probe tip 0.0050 117 182 217 249
+oscilloscope probe tip 0.0048 376 -4 414 97
+oscilloscope probe tip 0.0046 212 216 242 249
+oscilloscope probe tip 0.0045 125 173 140 194
+oscilloscope probe tip 0.0039 55 183 252 369
+oscilloscope probe tip 0.0037 225 186 300 316
+oscilloscope probe tip 0.0029 210 214 243 277
+oscilloscope probe tip 0.0023 75 0 209 125
+oscilloscope probe tip 0.0021 74 66 88 106
+oscilloscope probe tip 0.0018 134 204 227 340
+oscilloscope probe tip 0.0015 172 308 242 415
+oscilloscope probe tip 0.0014 218 204 243 230
+oscilloscope probe tip 0.0014 0 71 22 102
+oscilloscope probe tip 0.0014 110 296 298 420
+oscilloscope probe tip 0.0013 339 221 415 310
+oscilloscope probe tip 0.0013 41 254 257 408
+oscilloscope probe tip 0.0011 17 52 65 106
+oscilloscope probe tip 0.0011 205 199 221 230
+low voltage board 0.8666 49 206 255 396
+low voltage board 0.3808 129 196 229 355
+low voltage board 0.1268 7 247 342 412
+low voltage board 0.0497 68 299 272 414
+low voltage board 0.0189 117 182 217 249
+low voltage board 0.0163 221 182 309 319
+low voltage board 0.0038 77 173 227 321
+low voltage board 0.0028 368 291 418 421
+low voltage board 0.0027 16 67 63 125
+low voltage board 0.0026 73 62 83 106
+low voltage board 0.0021 165 299 236 419
+low voltage board 0.0021 377 9 415 122
+low voltage board 0.0015 0 71 22 102
+low voltage board 0.0013 208 205 244 264
+low voltage board 0.0012 72 289 147 387
+low voltage board 0.0011 73 157 338 387
+high voltage board 0.0415 49 206 255 396
+high voltage board 0.0178 123 182 216 244
+high voltage board 0.0168 225 186 300 316
+high voltage board 0.0066 7 247 342 412
+high voltage board 0.0060 119 183 237 324
+high voltage board 0.0041 208 205 244 264
+high voltage board 0.0038 0 53 59 124
+high voltage board 0.0029 0 71 22 102
+high voltage board 0.0024 0 58 25 118
+high voltage board 0.0015 68 299 272 414
+high voltage board 0.0014 74 66 88 106
+high voltage board 0.0014 75 0 209 125
+high voltage board 0.0013 377 9 415 122
+high voltage board 0.0013 107 189 200 272
+high voltage board 0.0011 368 291 418 421
+high voltage board 0.0011 215 227 239 264
+high voltage board 0.0010 17 52 65 106
+register 0.0049 75 0 209 125
+register 0.0040 359 255 421 419
+register 0.0034 74 66 88 106
+register 0.0032 8 186 286 419
+register 0.0028 225 186 300 316
+register 0.0025 16 67 63 125
+electric screwdriver battery 0.0060 73 62 83 106
+electric screwdriver battery 0.0044 17 52 65 106
+electric screwdriver battery 0.0036 2 56 46 117
+electric screwdriver battery 0.0035 0 71 22 102
+electric screwdriver battery 0.0026 225 186 300 316
+electric screwdriver battery 0.0018 368 291 418 421
+electric screwdriver battery 0.0018 8 186 286 419
+electric screwdriver battery 0.0011 123 182 216 244
+electric screwdriver battery 0.0010 0 58 25 118
+electric screwdriver battery 0.0010 377 9 415 122
+working area 0.5964 27 187 322 417
+working area 0.0375 101 201 245 382
+working area 0.0297 41 254 257 408
+working area 0.0179 -4 291 354 429
+working area 0.0167 110 296 298 420
+working area 0.0115 231 198 316 324
+working area 0.0081 181 300 360 420
+working area 0.0048 195 182 301 348
+working area 0.0039 0 322 98 416
+working area 0.0034 124 175 274 329
+working area 0.0033 359 255 421 419
+working area 0.0027 74 66 88 106
+working area 0.0027 94 1 229 140
+working area 0.0024 16 67 63 125
+working area 0.0016 219 315 318 415
+working area 0.0012 172 308 242 415
+working area 0.0010 118 190 217 273
+working area 0.0010 193 314 282 413
+working area 0.0010 54 87 360 328
+working area 0.0010 134 204 227 340
+welder base 0.0091 16 67 63 125
+welder base 0.0045 376 -4 414 97
+welder base 0.0037 73 62 83 106
+welder base 0.0027 368 291 418 421
+welder base 0.0019 221 182 309 319
+welder base 0.0018 2 56 46 117
+welder base 0.0016 75 0 209 125
+welder base 0.0016 8 186 286 419
+welder base 0.0013 0 71 22 102
+welder base 0.0010 0 66 20 139
+socket 0.9880 17 57 67 116
+socket 0.7846 73 62 83 106
+socket 0.0854 2 56 46 117
+socket 0.0417 0 71 22 102
+socket 0.0243 68 57 85 114
+socket 0.0092 73 57 92 115
+socket 0.0084 76 53 90 94
+socket 0.0050 225 186 300 316
+socket 0.0047 0 58 25 118
+socket 0.0047 123 182 216 244
+socket 0.0044 368 291 418 421
+socket 0.0037 396 0 416 22
+socket 0.0029 186 -2 211 84
+socket 0.0028 377 4 416 107
+socket 0.0023 55 183 252 369
+socket 0.0019 75 0 209 125
+socket 0.0019 382 0 405 16
+socket 0.0016 138 189 250 351
+socket 0.0014 379 331 412 419
+socket 0.0011 41 254 257 408
+socket 0.0010 7 66 72 138
+left red button 0.0022 74 66 88 106
+left red button 0.0020 225 186 300 316
+left red button 0.0016 16 67 63 125
+left red button 0.0013 55 183 252 369
+left green button 0.0021 74 66 88 106
+left green button 0.0020 225 186 300 316
+left green button 0.0014 63 189 350 411
+left green button 0.0013 16 67 63 125
+right red button 0.0022 74 66 88 106
+right red button 0.0017 225 186 300 316
+right red button 0.0016 63 189 350 411
+right red button 0.0013 16 67 63 125
+right green button 0.0023 74 66 88 106
+right green button 0.0016 225 186 300 316
+right green button 0.0013 75 0 209 125
+right green button 0.0012 16 67 63 125
+hand 0.9808 224 193 304 328
+hand 0.9697 129 196 229 355
+hand 0.0172 55 183 252 369
+hand 0.0074 74 66 88 106
+hand 0.0025 75 0 209 125
+hand 0.0024 24 405 89 416
+hand 0.0017 73 53 82 100
+hand 0.0017 368 291 418 421
+hand 0.0014 118 190 217 273
+hand 0.0010 377 9 415 122
+hand 0.0010 68 299 272 414
+hand 0.0010 71 400 106 416

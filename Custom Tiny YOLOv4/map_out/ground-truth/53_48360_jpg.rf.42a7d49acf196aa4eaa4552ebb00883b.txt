@@ -1,0 +1,5 @@
+working area 67 10 416 416
+oscilloscope probe tip 2 152 62 349
+pliers 83 383 108 407
+screwdriver- 381 326 415 353
+hand 113 205 203 400

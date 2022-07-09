@@ -1,0 +1,7 @@
+electric screwdriver 200 7 414 333
+working area 107 177 416 416
+oscilloscope probe tip 132 144 212 177
+oscilloscope 101 3 257 87
+socket 66 1 99 12
+hand 114 169 207 307
+hand 262 77 394 224

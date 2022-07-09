@@ -1,0 +1,6 @@
+welder probe tip 193 245 415 328
+low voltage board 91 165 239 416
+screwdriver- 319 5 416 282
+working area 2 2 416 414
+hand 320 269 417 415
+hand 115 272 159 415

@@ -1,0 +1,8 @@
+oscilloscope 117 52 256 187
+socket 26 78 81 138
+socket 94 79 123 138
+oscilloscope probe tip 116 271 179 329
+low voltage board 185 245 328 416
+working area 105 280 417 414
+hand 275 274 416 414
+hand 68 228 161 353

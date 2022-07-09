@@ -1,0 +1,101 @@
+power supply 0.9769 0 213 107 415
+power supply 0.0089 364 316 415 411
+power supply 0.0031 268 289 389 417
+power supply 0.0028 83 191 147 288
+power supply 0.0017 140 209 236 338
+power supply 0.0013 88 202 117 293
+oscilloscope 0.7858 363 324 416 417
+oscilloscope 0.0423 268 289 389 417
+oscilloscope 0.0089 -1 227 109 417
+oscilloscope 0.0064 394 315 415 408
+oscilloscope 0.0034 152 203 236 336
+oscilloscope 0.0019 370 309 413 387
+oscilloscope 0.0016 405 336 415 383
+oscilloscope 0.0015 338 294 418 401
+oscilloscope 0.0012 142 285 229 407
+welder station 0.0181 371 316 415 407
+welder station 0.0059 0 213 107 415
+welder station 0.0028 142 285 229 407
+welder station 0.0020 153 212 239 337
+welder station 0.0019 260 269 373 418
+welder station 0.0017 83 191 147 288
+electric screwdriver 0.0033 152 203 236 336
+electric screwdriver 0.0032 260 269 373 418
+electric screwdriver 0.0027 142 285 229 407
+electric screwdriver 0.0023 364 316 415 411
+screwdriver- 0.0086 7 206 124 416
+screwdriver- 0.0083 260 269 373 418
+screwdriver- 0.0054 140 209 236 338
+screwdriver- 0.0031 365 321 415 413
+screwdriver- 0.0027 156 292 231 419
+screwdriver- 0.0015 98 266 108 291
+screwdriver- 0.0014 -24 208 81 407
+pliers 0.0036 260 269 373 418
+pliers 0.0025 140 209 236 338
+pliers 0.0017 365 321 415 413
+pliers 0.0017 156 292 231 419
+pliers 0.0012 98 266 108 291
+welder probe tip 0.0028 364 316 415 411
+welder probe tip 0.0020 158 287 232 409
+welder probe tip 0.0018 260 269 373 418
+welder probe tip 0.0017 140 209 236 338
+oscilloscope probe tip 0.0049 371 316 415 407
+oscilloscope probe tip 0.0015 130 289 215 403
+oscilloscope probe tip 0.0012 268 289 389 417
+oscilloscope probe tip 0.0012 98 266 108 291
+oscilloscope probe tip 0.0012 140 209 236 338
+low voltage board 0.0069 0 213 107 415
+low voltage board 0.0063 364 316 415 411
+low voltage board 0.0022 268 289 389 417
+low voltage board 0.0010 156 292 231 419
+high voltage board 0.0047 -1 227 109 417
+high voltage board 0.0024 260 269 373 418
+high voltage board 0.0023 365 321 415 413
+high voltage board 0.0023 140 209 236 338
+high voltage board 0.0014 130 289 215 403
+register 0.0076 -1 227 109 417
+register 0.0030 268 289 389 417
+register 0.0025 365 321 415 413
+register 0.0018 140 209 236 338
+register 0.0012 83 191 147 288
+electric screwdriver battery 0.0025 273 279 377 410
+electric screwdriver battery 0.0024 148 210 231 334
+electric screwdriver battery 0.0024 364 316 415 411
+working area 0.0300 7 206 124 416
+working area 0.0084 142 285 229 407
+working area 0.0049 -24 208 81 407
+working area 0.0020 371 316 415 407
+working area 0.0017 268 289 389 417
+working area 0.0014 68 5 411 346
+working area 0.0013 -114 223 145 441
+working area 0.0011 120 367 242 412
+working area 0.0011 140 209 236 338
+working area 0.0010 77 262 219 414
+welder base 0.0031 0 213 107 415
+welder base 0.0029 365 321 415 413
+welder base 0.0011 142 285 229 407
+welder base 0.0011 83 191 147 288
+socket 0.9972 152 211 237 336
+socket 0.9934 269 272 381 420
+socket 0.0513 371 316 415 407
+socket 0.0162 339 313 417 417
+socket 0.0035 98 266 108 291
+socket 0.0024 364 330 395 416
+socket 0.0018 -1 227 109 417
+socket 0.0013 289 299 436 418
+socket 0.0012 265 265 330 394
+socket 0.0012 83 191 147 288
+socket 0.0011 88 202 117 293
+left red button 0.0011 371 316 415 407
+left red button 0.0010 268 289 389 417
+left green button 0.0020 371 316 415 407
+left green button 0.0011 268 289 389 417
+right green button 0.0012 268 289 389 417
+right green button 0.0011 371 316 415 407
+hand 0.9976 149 289 226 419
+hand 0.0095 174 287 246 404
+hand 0.0036 365 321 415 413
+hand 0.0028 260 269 373 418
+hand 0.0017 152 203 236 336
+hand 0.0017 77 262 219 414
+hand 0.0012 -1 227 109 417

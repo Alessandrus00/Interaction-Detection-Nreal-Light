@@ -1,0 +1,5 @@
+socket 161 128 231 228
+oscilloscope 219 115 417 375
+socket 58 109 134 196
+power supply 2 125 25 279
+hand 148 166 210 314

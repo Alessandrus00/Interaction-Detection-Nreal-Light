@@ -1,0 +1,7 @@
+low voltage board 80 345 188 415
+working area 176 292 302 416
+electric screwdriver 142 68 311 342
+welder station 169 7 246 104
+pliers 70 209 155 281
+hand 51 247 171 401
+hand 173 26 299 265

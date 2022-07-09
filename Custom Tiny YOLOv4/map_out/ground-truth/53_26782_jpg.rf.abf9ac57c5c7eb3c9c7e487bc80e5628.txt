@@ -1,0 +1,8 @@
+welder probe tip 210 260 392 416
+low voltage board 132 95 352 395
+oscilloscope probe tip 1 3 22 37
+pliers 118 249 202 335
+screwdriver- 392 27 416 266
+working area 65 3 416 415
+hand 48 200 160 391
+hand 271 306 380 414

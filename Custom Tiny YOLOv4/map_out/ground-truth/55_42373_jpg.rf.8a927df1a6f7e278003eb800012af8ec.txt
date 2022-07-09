@@ -1,0 +1,4 @@
+oscilloscope 140 101 334 349
+socket 2 28 61 146
+socket 78 93 155 216
+hand 251 273 309 416

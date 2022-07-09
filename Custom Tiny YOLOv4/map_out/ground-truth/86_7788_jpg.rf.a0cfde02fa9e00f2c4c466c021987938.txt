@@ -1,0 +1,10 @@
+oscilloscope 3 2 150 151
+welder station 306 3 390 111
+socket 388 1 397 42
+pliers 167 128 221 199
+working area 3 182 374 414
+low voltage board 144 263 303 411
+screwdriver- 387 303 416 350
+pliers 405 108 415 140
+hand 61 291 197 414
+hand 277 321 408 417

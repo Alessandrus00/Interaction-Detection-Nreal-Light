@@ -1,0 +1,11 @@
+low voltage board 244 256 416 417
+welder base 266 9 316 175
+socket 231 12 276 78
+socket 178 30 216 96
+welder station 118 15 192 168
+screwdriver- 42 170 76 263
+high voltage board 376 209 416 298
+working area 5 245 168 415
+pliers 212 134 280 227
+hand 195 363 277 414
+hand 402 317 415 357

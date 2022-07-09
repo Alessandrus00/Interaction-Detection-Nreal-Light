@@ -1,0 +1,11 @@
+high voltage board 109 160 296 256
+oscilloscope 37 1 172 51
+socket 1 2 42 31
+welder station 310 2 377 35
+welder base 393 3 416 69
+pliers 126 292 194 414
+working area 23 102 416 414
+pliers 228 48 311 90
+oscilloscope probe tip 69 68 133 82
+hand 35 306 163 415
+hand 254 116 344 242

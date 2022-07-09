@@ -1,0 +1,6 @@
+screwdriver- 209 96 326 243
+low voltage board 1 239 223 416
+working area 1 224 328 416
+welder station 316 1 409 35
+pliers 216 1 282 137
+hand 251 101 391 393

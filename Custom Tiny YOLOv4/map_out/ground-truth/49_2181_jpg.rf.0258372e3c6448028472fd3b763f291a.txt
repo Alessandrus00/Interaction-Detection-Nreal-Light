@@ -1,0 +1,8 @@
+high voltage board 71 184 270 285
+pliers 330 118 403 220
+working area 1 194 371 416
+oscilloscope 2 3 123 81
+welder station 302 2 390 105
+socket 389 1 407 31
+hand 4 210 104 385
+hand 254 194 357 329

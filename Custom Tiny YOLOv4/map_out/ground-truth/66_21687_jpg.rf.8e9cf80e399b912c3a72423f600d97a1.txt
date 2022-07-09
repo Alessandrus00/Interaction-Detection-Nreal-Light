@@ -1,0 +1,6 @@
+oscilloscope 91 120 264 278
+oscilloscope probe tip 103 357 181 416
+socket 58 141 91 209
+socket 1 130 41 204
+hand 212 205 291 350
+hand 29 275 86 403

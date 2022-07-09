@@ -1,0 +1,12 @@
+oscilloscope 1 31 85 181
+welder station 226 41 290 165
+socket 287 63 297 108
+socket 308 62 354 113
+welder base 345 84 393 198
+welder probe tip 372 104 404 131
+electric screwdriver battery 386 120 404 154
+pliers 305 157 371 235
+screwdriver- 200 2 305 414
+working area 3 222 259 414
+hand 202 227 370 416
+hand 57 291 176 415

@@ -1,0 +1,6 @@
+working area 40 221 289 416
+electric screwdriver 208 2 416 264
+pliers 175 140 262 184
+oscilloscope 2 4 99 136
+hand 268 6 401 177
+hand 99 98 179 227

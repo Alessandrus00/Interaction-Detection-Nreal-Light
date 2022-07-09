@@ -1,0 +1,4 @@
+working area 86 162 417 417
+oscilloscope probe tip 24 17 73 104
+oscilloscope 93 2 280 91
+hand 245 118 368 262

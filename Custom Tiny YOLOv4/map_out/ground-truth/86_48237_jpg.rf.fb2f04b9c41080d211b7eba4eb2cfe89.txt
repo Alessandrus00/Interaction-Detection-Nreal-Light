@@ -1,0 +1,6 @@
+oscilloscope probe tip 136 360 195 383
+low voltage board 75 195 285 416
+oscilloscope 9 12 185 192
+welder station 355 4 415 147
+working area 19 233 392 414
+hand 18 310 160 414

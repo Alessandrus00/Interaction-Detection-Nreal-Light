@@ -1,0 +1,5 @@
+low voltage board 129 41 403 416
+oscilloscope 4 2 188 161
+welder station 353 5 414 137
+hand 2 231 166 417
+hand 388 123 417 401

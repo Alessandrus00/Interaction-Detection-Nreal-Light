@@ -1,0 +1,8 @@
+electric screwdriver 174 3 387 242
+high voltage board 3 215 200 337
+working area 2 224 342 415
+oscilloscope 1 1 38 124
+pliers 264 153 331 234
+screwdriver- 351 282 416 416
+hand 3 255 52 375
+hand 225 2 351 155

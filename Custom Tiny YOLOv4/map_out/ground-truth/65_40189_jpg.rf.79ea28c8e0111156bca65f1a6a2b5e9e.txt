@@ -1,0 +1,5 @@
+power supply 191 78 253 260
+socket 276 115 341 188
+socket 369 135 416 215
+register 92 387 153 413
+hand 216 195 279 327

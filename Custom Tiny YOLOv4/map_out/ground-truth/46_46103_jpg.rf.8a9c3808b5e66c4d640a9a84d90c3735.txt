@@ -1,0 +1,8 @@
+oscilloscope 1 64 172 259
+socket 1 164 14 217
+pliers 231 179 330 242
+welder station 332 3 416 175
+oscilloscope probe tip 280 228 317 360
+low voltage board 157 289 357 414
+hand 284 268 416 415
+hand 28 293 152 416

@@ -1,0 +1,4 @@
+working area 35 62 416 416
+low voltage board 140 293 350 414
+pliers 328 1 361 19
+hand 37 234 156 413

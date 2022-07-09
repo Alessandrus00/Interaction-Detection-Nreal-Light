@@ -1,0 +1,11 @@
+high voltage board 140 135 288 206
+working area 62 175 416 417
+socket 49 2 79 28
+socket 2 2 28 25
+electric screwdriver 270 147 416 312
+pliers 280 97 377 149
+welder station 371 4 416 91
+oscilloscope 78 4 220 78
+oscilloscope probe tip 144 125 181 147
+hand 72 135 172 280
+hand 359 305 417 360

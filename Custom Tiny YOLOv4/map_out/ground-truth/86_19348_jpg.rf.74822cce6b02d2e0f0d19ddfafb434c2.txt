@@ -1,0 +1,7 @@
+oscilloscope 148 140 325 307
+power supply 2 120 37 319
+socket 52 134 112 196
+socket 129 143 150 199
+working area 210 380 309 415
+low voltage board 260 358 375 416
+hand 278 171 358 293

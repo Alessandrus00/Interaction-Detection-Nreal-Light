@@ -1,0 +1,5 @@
+oscilloscope 151 118 367 308
+socket 105 65 178 160
+socket 6 42 82 136
+pliers 404 283 416 339
+hand 300 234 373 390

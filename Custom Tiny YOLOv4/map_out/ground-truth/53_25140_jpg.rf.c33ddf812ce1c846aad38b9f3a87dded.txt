@@ -1,0 +1,7 @@
+low voltage board 108 293 252 416
+screwdriver- 244 211 299 388
+pliers 192 2 234 120
+welder station 246 2 304 55
+working area 28 135 312 414
+welder base 345 1 398 59
+oscilloscope 2 3 96 68

@@ -1,0 +1,9 @@
+high voltage board 73 229 244 299
+working area 28 184 320 414
+welder base 379 4 416 124
+welder station 266 1 337 49
+pliers 216 32 264 136
+screwdriver- 170 40 221 178
+oscilloscope 2 3 68 58
+pliers 136 3 213 25
+hand 172 208 245 360

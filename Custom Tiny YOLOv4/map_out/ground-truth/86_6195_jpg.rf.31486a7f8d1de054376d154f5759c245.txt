@@ -1,0 +1,11 @@
+low voltage board 1 203 216 416
+pliers 110 165 164 210
+working area 2 224 288 415
+pliers 349 127 415 234
+welder station 400 39 416 136
+welder station 248 4 331 142
+socket 353 2 412 61
+socket 323 4 340 63
+oscilloscope 2 10 86 186
+hand 179 242 273 378
+hand 2 351 34 389

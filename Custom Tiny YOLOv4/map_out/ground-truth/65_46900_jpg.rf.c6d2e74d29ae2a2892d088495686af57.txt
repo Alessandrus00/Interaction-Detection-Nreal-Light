@@ -1,0 +1,9 @@
+high voltage board 120 145 292 240
+oscilloscope probe tip 200 216 239 259
+working area 43 187 416 412
+welder station 369 3 416 93
+oscilloscope 63 1 211 133
+socket 44 33 74 91
+socket 2 40 31 102
+hand 131 184 227 348
+hand 271 175 365 331

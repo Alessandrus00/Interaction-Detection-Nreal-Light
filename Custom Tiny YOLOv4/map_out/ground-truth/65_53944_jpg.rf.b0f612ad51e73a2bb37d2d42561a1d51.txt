@@ -1,0 +1,5 @@
+right red button 211 227 229 254
+left red button 157 235 172 261
+left green button 183 231 197 262
+right green button 239 225 253 254
+hand 210 233 264 351

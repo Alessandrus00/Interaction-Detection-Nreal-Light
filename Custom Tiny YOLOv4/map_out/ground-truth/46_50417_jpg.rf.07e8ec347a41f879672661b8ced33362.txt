@@ -1,0 +1,9 @@
+working area 2 284 315 416
+oscilloscope 2 4 114 145
+pliers 170 168 266 230
+welder station 273 44 362 223
+socket 384 107 416 167
+socket 359 97 372 158
+welder base 397 149 416 242
+oscilloscope probe tip 41 189 117 264
+hand 264 268 367 415

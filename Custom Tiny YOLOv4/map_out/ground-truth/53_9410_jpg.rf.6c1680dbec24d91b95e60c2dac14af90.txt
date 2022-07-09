@@ -1,0 +1,7 @@
+welder station 165 65 269 327
+socket 223 37 306 134
+socket 325 3 404 100
+pliers 80 281 139 415
+welder base 365 91 417 354
+welder probe tip 407 171 416 209
+hand 207 212 293 401

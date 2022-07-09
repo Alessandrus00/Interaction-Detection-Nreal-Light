@@ -1,0 +1,6 @@
+power supply 156 102 211 291
+socket 210 129 267 199
+socket 282 145 338 233
+oscilloscope probe tip 303 370 375 416
+oscilloscope 327 115 417 298
+hand 143 223 202 357

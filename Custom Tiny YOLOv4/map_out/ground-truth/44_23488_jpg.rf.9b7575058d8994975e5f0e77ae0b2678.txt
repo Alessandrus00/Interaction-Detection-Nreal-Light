@@ -1,0 +1,7 @@
+welder probe tip 249 263 307 353
+socket 207 71 272 164
+socket 112 77 185 167
+welder station 58 83 160 317
+welder base 203 136 278 368
+electric screwdriver 347 277 416 412
+hand 254 268 312 414

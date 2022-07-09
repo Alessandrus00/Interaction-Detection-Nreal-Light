@@ -1,0 +1,7 @@
+low voltage board 116 154 416 414
+pliers 2 320 99 416
+working area 2 22 416 413
+pliers 280 3 319 33
+welder station 352 2 404 14
+hand 272 104 416 374
+hand 73 311 201 416

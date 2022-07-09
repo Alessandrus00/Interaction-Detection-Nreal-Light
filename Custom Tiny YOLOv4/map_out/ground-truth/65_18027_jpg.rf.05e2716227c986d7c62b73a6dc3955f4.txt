@@ -1,0 +1,10 @@
+high voltage board 173 106 217 323
+pliers 158 226 196 262
+working area 57 60 383 415
+screwdriver- 2 129 16 241
+pliers 230 6 306 46
+oscilloscope 73 2 178 13
+oscilloscope probe tip 84 19 142 42
+welder base 387 3 416 34
+hand 189 130 282 261
+hand 78 187 172 330

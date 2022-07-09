@@ -1,0 +1,10 @@
+high voltage board 2 208 223 345
+oscilloscope 2 2 57 105
+welder station 249 1 345 141
+socket 341 3 350 47
+socket 366 3 417 52
+screwdriver- 322 339 385 416
+working area 2 238 346 416
+welder base 402 72 417 153
+hand 230 174 353 306
+hand 2 266 46 367

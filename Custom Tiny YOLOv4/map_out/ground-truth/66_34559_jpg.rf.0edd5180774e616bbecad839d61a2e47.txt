@@ -1,0 +1,6 @@
+socket 162 153 218 248
+socket 230 116 295 202
+welder station 85 169 191 416
+welder base 233 211 282 345
+electric screwdriver battery 406 299 417 363
+hand 177 203 224 304

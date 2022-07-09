@@ -1,0 +1,7 @@
+low voltage board 199 219 403 415
+oscilloscope probe tip 101 52 183 93
+working area 157 221 416 415
+pliers 369 19 416 175
+oscilloscope 82 1 117 17
+hand 133 321 205 416
+hand 212 260 301 413

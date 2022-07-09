@@ -1,0 +1,3 @@
+oscilloscope 1 184 186 373
+welder station 376 171 417 362
+hand 73 185 156 328

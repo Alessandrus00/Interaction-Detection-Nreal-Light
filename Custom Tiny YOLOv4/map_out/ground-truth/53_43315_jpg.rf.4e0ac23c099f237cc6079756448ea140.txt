@@ -1,0 +1,3 @@
+oscilloscope 1 175 220 415
+pliers 388 313 416 408
+hand 168 181 263 313

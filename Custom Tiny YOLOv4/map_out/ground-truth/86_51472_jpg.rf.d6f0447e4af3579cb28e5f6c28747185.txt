@@ -1,0 +1,10 @@
+screwdriver- 174 114 233 320
+oscilloscope 2 76 93 253
+welder station 266 48 347 203
+socket 338 64 354 122
+socket 366 57 416 117
+pliers 368 191 416 278
+low voltage board 101 349 206 414
+working area 1 304 291 414
+hand 89 242 184 363
+hand 205 92 322 300

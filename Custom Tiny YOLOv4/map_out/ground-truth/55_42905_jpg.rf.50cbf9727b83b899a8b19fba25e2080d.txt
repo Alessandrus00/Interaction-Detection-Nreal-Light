@@ -1,0 +1,8 @@
+high voltage board 208 301 381 416
+working area 84 262 402 416
+socket 54 2 119 78
+socket 2 2 36 29
+oscilloscope 113 4 269 157
+electric screwdriver 214 45 417 416
+hand 113 242 213 414
+hand 294 115 417 353
