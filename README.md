@@ -1,2 +1,2 @@
 # Interaction-Detection-Nreal-Light
-AR application that recognize the interaction between hand and object made with NRSDK
+AR application made with NRSDK for Nreal Light that recognizes interactions of type hand-object.
