@@ -1,0 +1,66 @@
+<annotation>
+	<folder></folder>
+	<filename>46_35521_jpg.rf.8b9e327252ab96ba754a8eaf775a7048.jpg</filename>
+	<path>46_35521_jpg.rf.8b9e327252ab96ba754a8eaf775a7048.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>416</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>low voltage board</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>40</xmin>
+			<xmax>362</xmax>
+			<ymin>88</ymin>
+			<ymax>415</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>welder station</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>364</xmin>
+			<xmax>416</xmax>
+			<ymin>3</ymin>
+			<ymax>55</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>working area</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>7</xmin>
+			<xmax>417</xmax>
+			<ymin>1</ymin>
+			<ymax>416</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>288</xmin>
+			<xmax>416</xmax>
+			<ymin>318</ymin>
+			<ymax>416</ymax>
+		</bndbox>
+	</object>
+</annotation>

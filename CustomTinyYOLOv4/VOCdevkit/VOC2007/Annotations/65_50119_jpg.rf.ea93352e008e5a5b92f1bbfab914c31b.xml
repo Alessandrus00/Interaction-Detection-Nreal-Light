@@ -1,0 +1,66 @@
+<annotation>
+	<folder></folder>
+	<filename>65_50119_jpg.rf.ea93352e008e5a5b92f1bbfab914c31b.jpg</filename>
+	<path>65_50119_jpg.rf.ea93352e008e5a5b92f1bbfab914c31b.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>416</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>electric screwdriver</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>106</xmin>
+			<xmax>219</xmax>
+			<ymin>124</ymin>
+			<ymax>326</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>low voltage board</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>238</xmin>
+			<xmax>340</xmax>
+			<ymin>2</ymin>
+			<ymax>114</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>welder base</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>63</xmin>
+			<xmax>100</xmax>
+			<ymin>2</ymin>
+			<ymax>21</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>173</xmin>
+			<xmax>269</xmax>
+			<ymin>147</ymin>
+			<ymax>266</ymax>
+		</bndbox>
+	</object>
+</annotation>
