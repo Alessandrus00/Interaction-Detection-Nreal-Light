@@ -1,8 +1,0 @@
-pliers 286 360 317 409
-oscilloscope 2 154 87 298
-welder station 246 174 325 325
-socket 313 188 333 245
-socket 344 181 398 244
-welder base 384 210 417 356
-working area 236 403 284 416
-hand 292 350 370 416

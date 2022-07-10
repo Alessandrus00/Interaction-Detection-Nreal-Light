@@ -1,7 +1,0 @@
-electric screwdriver 196 2 362 235
-working area 2 194 343 414
-oscilloscope probe tip 3 174 92 234
-oscilloscope 2 2 128 124
-welder base 384 3 415 26
-hand 107 156 193 269
-hand 232 8 322 162

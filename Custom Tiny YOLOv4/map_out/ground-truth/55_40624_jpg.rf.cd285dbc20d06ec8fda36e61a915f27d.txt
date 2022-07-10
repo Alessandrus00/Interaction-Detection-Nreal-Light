@@ -1,4 +1,0 @@
-oscilloscope 17 199 204 370
-socket 2 236 30 323
-welder station 385 249 416 415
-hand 100 201 175 335

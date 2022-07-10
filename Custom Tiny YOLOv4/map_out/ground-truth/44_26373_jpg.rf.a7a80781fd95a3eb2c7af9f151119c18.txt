@@ -1,9 +1,0 @@
-working area 1 256 275 415
-high voltage board 3 302 166 414
-welder station 186 4 281 96
-pliers 18 10 132 117
-screwdriver- 64 118 144 284
-welder base 331 3 411 138
-welder probe tip 372 3 416 31
-hand 19 267 153 413
-hand 169 311 257 416

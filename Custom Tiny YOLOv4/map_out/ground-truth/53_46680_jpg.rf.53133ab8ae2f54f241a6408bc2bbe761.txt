@@ -1,8 +1,0 @@
-screwdriver- 196 206 245 266
-low voltage board 174 44 328 261
-working area 93 51 405 416
-pliers 334 2 369 24
-oscilloscope probe tip 22 166 87 340
-pliers 122 370 140 414
-hand 100 201 177 353
-hand 213 116 324 310

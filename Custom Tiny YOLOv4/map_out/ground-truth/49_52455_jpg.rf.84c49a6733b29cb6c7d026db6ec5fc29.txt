@@ -1,5 +1,0 @@
-working area 72 245 416 415
-electric screwdriver 180 2 417 327
-oscilloscope 2 3 191 153
-hand 23 227 138 406
-hand 209 4 401 213

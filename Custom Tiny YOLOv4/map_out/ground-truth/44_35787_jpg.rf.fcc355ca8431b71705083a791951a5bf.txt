@@ -1,7 +1,0 @@
-electric screwdriver 210 252 375 415
-working area 1 281 279 416
-pliers 57 2 174 53
-screwdriver- 113 72 197 260
-welder station 242 1 339 60
-welder base 394 3 415 80
-hand 118 266 212 413

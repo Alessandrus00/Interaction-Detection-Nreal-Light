@@ -1,4 +1,0 @@
-working area 2 206 416 414
-welder station 358 3 417 170
-oscilloscope 2 2 177 116
-hand 306 144 413 311

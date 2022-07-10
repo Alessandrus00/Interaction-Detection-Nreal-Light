@@ -1,9 +1,0 @@
-oscilloscope probe tip 169 335 213 378
-oscilloscope 156 119 288 257
-high voltage board 217 320 380 402
-working area 177 329 417 416
-pliers 345 277 416 341
-power supply 2 107 40 272
-socket 60 136 110 195
-socket 126 145 161 204
-hand 116 318 193 416

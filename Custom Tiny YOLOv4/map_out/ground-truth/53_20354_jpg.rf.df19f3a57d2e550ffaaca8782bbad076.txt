@@ -1,2 +1,0 @@
-low voltage board 94 2 414 415
-working area 2 3 416 414

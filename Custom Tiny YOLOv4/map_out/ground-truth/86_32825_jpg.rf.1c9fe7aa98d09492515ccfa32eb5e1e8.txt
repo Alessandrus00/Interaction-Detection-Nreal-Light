@@ -1,5 +1,0 @@
-socket 202 141 278 236
-welder station 141 181 242 414
-socket 302 111 373 207
-welder base 351 227 414 413
-hand 242 216 296 311

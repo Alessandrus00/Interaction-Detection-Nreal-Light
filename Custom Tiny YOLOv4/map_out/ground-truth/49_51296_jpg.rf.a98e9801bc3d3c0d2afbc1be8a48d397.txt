@@ -1,6 +1,0 @@
-electric screwdriver 184 1 416 279
-oscilloscope 2 2 201 136
-high voltage board 190 220 374 292
-working area 91 235 417 416
-hand 56 197 184 395
-hand 190 2 380 175

@@ -1,3 +1,0 @@
-socket 294 204 358 314
-welder station 198 180 302 413
-hand 351 195 416 342

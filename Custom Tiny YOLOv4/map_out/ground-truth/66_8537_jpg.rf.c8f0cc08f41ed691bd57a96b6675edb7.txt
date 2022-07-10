@@ -1,7 +1,0 @@
-screwdriver- 205 166 248 231
-register 3 78 183 300
-power supply 180 1 213 15
-pliers 212 222 269 344
-working area 278 91 416 414
-oscilloscope probe tip 347 66 417 97
-hand 150 170 237 310

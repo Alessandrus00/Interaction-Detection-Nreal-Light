@@ -1,6 +1,0 @@
-electric screwdriver 178 215 415 416
-high voltage board 119 239 222 305
-working area 35 186 416 415
-pliers 256 4 376 47
-hand 94 288 186 412
-hand 358 392 415 415

@@ -1,6 +1,0 @@
-socket 133 168 212 281
-socket 230 108 299 214
-welder station 57 215 181 416
-welder base 253 183 353 415
-welder probe tip 310 301 405 385
-hand 169 224 252 377

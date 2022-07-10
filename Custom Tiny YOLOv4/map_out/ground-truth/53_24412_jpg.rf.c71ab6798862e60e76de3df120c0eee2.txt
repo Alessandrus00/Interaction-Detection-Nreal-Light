@@ -1,6 +1,0 @@
-screwdriver- 109 45 197 204
-low voltage board 3 246 224 415
-working area 3 216 337 415
-pliers 204 4 249 148
-hand 68 94 195 358
-hand 152 2 410 207

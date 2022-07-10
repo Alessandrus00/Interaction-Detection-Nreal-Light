@@ -1,9 +1,0 @@
-low voltage board 225 175 410 416
-socket 18 1 81 39
-socket 97 3 133 45
-oscilloscope 135 3 284 106
-screwdriver- 2 249 120 365
-working area 134 190 416 415
-oscilloscope probe tip 133 145 217 197
-hand 119 186 211 333
-hand 221 162 315 324

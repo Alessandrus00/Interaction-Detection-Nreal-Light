@@ -1,5 +1,0 @@
-# Run in Google Colab
-
-If you don't have a GPU that supports CUDA, it will be used the CPU during the training. Since training object detectors with GPU is faster than training with CPU, it is strongly recommended to run training in Google Colab, which allow you to get a really fast GPU (such as Tesla T4) for free. However there are usage limits that stop your training. When this happen, you have to wait few hours or days until you can restart your training. train.py can be used from a checkpoint (last generated weights), so that you can continue your job from the point you were stopped.
-
-To help you out, I made a colab notebook that contains basic instructions to succesfully train and convert you Tiny YOLOv4 model. Feel free to change it you you want. Before using it, you have to upload the folder `Custom Tiny YOLOv4` to your Google Drive's folder `MyDrive`.

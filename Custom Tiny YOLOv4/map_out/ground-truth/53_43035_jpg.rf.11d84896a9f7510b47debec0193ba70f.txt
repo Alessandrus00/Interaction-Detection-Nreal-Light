@@ -1,5 +1,0 @@
-oscilloscope probe tip 212 317 286 416
-low voltage board 101 2 333 375
-screwdriver- 378 172 416 307
-working area 2 3 416 413
-hand 262 343 374 415

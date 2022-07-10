@@ -1,9 +1,0 @@
-screwdriver- 190 153 221 289
-socket 2 70 40 128
-socket 60 79 82 131
-oscilloscope 81 55 230 211
-welder station 378 83 414 173
-low voltage board 181 268 345 413
-working area 97 268 344 411
-hand 122 153 203 295
-hand 186 38 279 166

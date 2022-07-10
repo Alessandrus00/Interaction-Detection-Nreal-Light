@@ -1,4 +1,0 @@
-power supply 149 1 242 295
-socket 243 1 329 86
-socket 358 25 416 163
-hand 149 313 240 416

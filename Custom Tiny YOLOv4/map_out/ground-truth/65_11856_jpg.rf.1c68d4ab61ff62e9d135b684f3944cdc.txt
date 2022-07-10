@@ -1,8 +1,0 @@
-electric screwdriver 193 1 417 288
-oscilloscope probe tip 106 88 174 118
-oscilloscope 79 2 232 87
-socket 37 1 79 22
-high voltage board 153 177 335 262
-working area 81 186 416 415
-hand 89 129 189 301
-hand 240 3 401 166

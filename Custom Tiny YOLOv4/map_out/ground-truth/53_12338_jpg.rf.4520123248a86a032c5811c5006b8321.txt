@@ -1,8 +1,0 @@
-welder probe tip 238 170 270 234
-socket 164 29 232 129
-socket 71 90 156 213
-welder station 4 161 151 415
-high voltage board 339 265 416 398
-electric screwdriver battery 315 171 376 271
-welder base 224 67 271 325
-hand 250 162 315 330

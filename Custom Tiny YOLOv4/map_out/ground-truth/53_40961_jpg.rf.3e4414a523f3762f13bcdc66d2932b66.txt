@@ -1,4 +1,0 @@
-oscilloscope probe tip 226 257 263 415
-working area 37 40 416 416
-low voltage board 188 75 416 414
-hand 268 342 336 417

@@ -1,2 +1,0 @@
-oscilloscope 1 163 238 416
-hand 252 213 415 416

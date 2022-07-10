@@ -1,4 +1,0 @@
-oscilloscope 2 66 200 399
-pliers 353 219 415 327
-welder station 401 93 416 194
-hand 195 51 295 281

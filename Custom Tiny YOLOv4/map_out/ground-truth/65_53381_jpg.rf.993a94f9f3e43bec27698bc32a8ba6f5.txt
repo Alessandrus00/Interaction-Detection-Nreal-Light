@@ -1,9 +1,0 @@
-register 44 127 213 348
-screwdriver- 229 240 318 322
-pliers 267 305 345 384
-working area 348 167 417 415
-oscilloscope 379 1 416 106
-socket 337 7 378 63
-socket 274 1 318 45
-power supply 213 2 255 87
-hand 157 250 246 383

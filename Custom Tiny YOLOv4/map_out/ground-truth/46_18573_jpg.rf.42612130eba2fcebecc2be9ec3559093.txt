@@ -1,8 +1,0 @@
-oscilloscope probe tip 272 327 298 397
-working area 142 244 415 415
-low voltage board 171 255 416 415
-pliers 275 152 377 231
-oscilloscope 29 2 225 108
-welder station 375 47 416 235
-hand 85 269 231 416
-hand 273 317 413 416

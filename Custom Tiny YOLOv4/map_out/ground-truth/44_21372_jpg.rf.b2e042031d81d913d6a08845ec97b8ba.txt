@@ -1,7 +1,0 @@
-oscilloscope 77 157 258 367
-socket 14 170 92 267
-welder station 402 133 416 230
-socket 405 94 416 144
-pliers 304 223 383 280
-screwdriver- 352 292 416 406
-hand 218 165 296 332

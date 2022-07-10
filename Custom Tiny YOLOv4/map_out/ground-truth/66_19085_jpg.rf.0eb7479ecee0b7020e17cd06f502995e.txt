@@ -1,8 +1,0 @@
-working area 1 232 329 416
-welder station 334 2 416 61
-pliers 366 269 416 414
-low voltage board 15 245 211 414
-oscilloscope 3 2 133 86
-screwdriver- 203 118 252 303
-hand 201 206 319 413
-hand 119 69 213 250

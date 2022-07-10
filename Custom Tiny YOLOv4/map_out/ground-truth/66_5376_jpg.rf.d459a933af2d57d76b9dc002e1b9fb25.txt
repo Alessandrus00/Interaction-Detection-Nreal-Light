@@ -1,7 +1,0 @@
-low voltage board 6 199 224 416
-oscilloscope 2 1 71 86
-working area 2 153 319 417
-screwdriver- 198 134 240 280
-pliers 308 161 411 357
-hand 200 199 284 377
-hand 99 88 192 213

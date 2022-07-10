@@ -1,6 +1,0 @@
-high voltage board 32 237 248 415
-working area 28 241 328 416
-electric screwdriver 241 313 417 417
-welder station 254 2 363 95
-oscilloscope 1 28 27 178
-hand 65 179 196 323

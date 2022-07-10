@@ -1,5 +1,0 @@
-electric screwdriver 262 316 416 416
-working area 2 195 302 416
-oscilloscope probe tip 148 58 241 181
-welder station 369 2 416 187
-hand 161 305 258 413

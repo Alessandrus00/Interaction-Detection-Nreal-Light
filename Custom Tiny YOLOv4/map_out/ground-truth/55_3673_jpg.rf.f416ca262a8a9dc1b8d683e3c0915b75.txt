@@ -1,8 +1,0 @@
-working area 101 336 306 415
-oscilloscope 96 68 236 226
-socket 2 98 32 157
-socket 46 111 101 179
-welder station 364 154 416 313
-oscilloscope probe tip 174 242 225 301
-hand 290 370 384 415
-hand 56 359 134 416
