@@ -2,6 +2,7 @@ VOCdevkit/VOC2007/Annotations/*.xml
 VOCdevkit/VOC2007/ImageSets/Main/*.txt
 VOCdevkit/VOC2007/JPEGImages/*.jpg
 utils/__pycache__
+nets/__pycache__
 tf-mac-m1/tensorflow-1.15.0-py3-none-any.whl
 .DS_Store
 2007_train.txt
