@@ -1,5 +1,3 @@
-### tensorflow==2.3.0-rc1
-
 import tensorflow as tf
 import os
 # Weight Quantization - Input/Output=float32
