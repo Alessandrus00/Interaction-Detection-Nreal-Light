@@ -9,6 +9,6 @@ In this section a custom model of Tiny YOLOv4 is trained using Keras framework. 
 6. (optional) evaluate the model with `get_map.py`.
 
 # References
-The code in this folder was originately created by [Bubbliiiing]: https://github.com/bubbliiiing/yolov4-tiny-keras. I readapted it and made few changes.
+The code in this folder was originately created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo.
 
 
