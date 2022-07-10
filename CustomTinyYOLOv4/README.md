@@ -13,6 +13,8 @@ If you want to use this model in barracuda do the following extra steps:
 7. run `tools/model_converter/keras_to_onnx.py` to convert Keras weigths (**.h5**) + network structure (**.json**) to ONNX format;
 8. run `tools/model_converter/onnx_to_barracuda.py` to get a barracuda compatible version of the model.
 
+Note that inside `logs` and `model_data` there are files already created by me executing the previous steps on this dataset. You can delete them if you want to restart the all process or change dataset (in `model_data` keep only `simhei.ttf`, `yolo_anchors.txt` and `yolov4_tiny_weights_coco.h5`).
+
 # Tensorflow on MAC M1 chip
 To execute Tenforflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
 
