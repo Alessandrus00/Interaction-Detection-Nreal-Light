@@ -8,7 +8,12 @@ In this section a custom model of Tiny YOLOv4 is trained using Keras framework. 
 5. run `yolo.py` and `predict.py` to test out your model (by default it uses the last added weights in `logs`);
 6. (optional) evaluate the model with `get_map.py`.
 
+If you want to use this model in barracuda do the following extra steps:
+
+7. run `tools/model_converter/keras_to_onnx.py` to convert Keras weigths (**.h5**) + network structure (**.json**) to ONNX format;
+8. run `tools/model_converter/onnx_to_barracuda.py` to get a barracuda compatible version of the model.
+
 # References
-The code in this folder was originately created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo.
+The training part with Keras was originately created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The conversion script `keras_to_onnx.py` was created by <a href="https://github.com/PINTO0309/PINTO_model_zoo/tree/main/046_yolov4-tiny/01_float32"> PINTO0309</a>, while the code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through a colab notebook.
 
 
