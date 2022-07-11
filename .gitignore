@@ -1,0 +1,11 @@
+CustomTinyYOLOv4/VOCdevkit/VOC2007/Annotations/*.xml
+CustomTinyYOLOv4/VOCdevkit/VOC2007/ImageSets/Main/*.txt
+CustomTinyYOLOv4/VOCdevkit/VOC2007/JPEGImages/*.jpg
+CustomTinyYOLOv4/__pycache__
+CustomTinyYOLOv4/utils/__pycache__
+CustomTinyYOLOv4/nets/__pycache__
+CustomTinyYOLOv4/tf-mac-m1/tensorflow-1.15.0-py3-none-any.whl
+.DS_Store
+CustomTinyYOLOv4/2007_train.txt
+CustomTinyYOLOv4/2007_val.txt
+CustomTinyYOLOv4/map_out
