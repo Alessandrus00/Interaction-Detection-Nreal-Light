@@ -3,7 +3,6 @@ import onnx
 from onnx import checker, helper
 from onnx import AttributeProto, TensorProto, GraphProto
 from onnx import numpy_helper as np_helper
-#sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
 
 old_onnx = 'model_data/yolov4_tiny.onnx'
 new_onnx = 'model_data/yolov4_tiny_barracuda.onnx'
