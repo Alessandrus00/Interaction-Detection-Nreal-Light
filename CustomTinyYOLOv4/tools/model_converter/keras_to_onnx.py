@@ -1,8 +1,6 @@
 import tensorflow as tf
 import os
-# Weight Quantization - Input/Output=float32
-# INPUT  = input_1 (float32, 1 x 416 x 416 x 3)
-# OUTPUT = conv2d_18, conv2d_21
+
 os.environ['TF_KERAS'] = '1'
 import keras2onnx
 
