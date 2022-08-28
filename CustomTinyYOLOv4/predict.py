@@ -13,14 +13,12 @@ from PIL import Image
 from yolo import YOLO
 
 if __name__ == "__main__":
-
-    list_of_files = glob.glob('logs/*.h5') # * means all if need specific format then *.csv
-    latest_file = os.path.basename(max(list_of_files, key=os.path.getctime))
-    print("Using the weights: ", latest_file)
     
-    model_path = 'logs/'+latest_file
+    model_path = 'logs/best_epoch_weights.h5'
     if len(sys.argv)>1:
         model_path = sys.argv[1]
+    
+    print("Using the weights in: ", model_path)
 
     yolo = YOLO(model_path= model_path)
     #----------------------------------------------------------------------------------------------------------#

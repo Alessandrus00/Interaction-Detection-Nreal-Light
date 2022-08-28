@@ -8,7 +8,7 @@ from PIL import ImageDraw, ImageFont
 
 from nets.yolo import yolo_body
 from utils.utils import (cvtColor, get_anchors, get_classes, preprocess_input,
-                         resize_image)
+                         resize_image, show_config)
 from utils.utils_bbox import DecodeBox
 
 
@@ -72,6 +72,8 @@ class YOLO(object):
         self.__dict__.update(self._defaults)
         for name, value in kwargs.items():
             setattr(self, name, value)
+            self._defaults[name] = value 
+            
         #---------------------------------------------------#
         #   获得种类和先验框的数量
         #---------------------------------------------------#
@@ -88,6 +90,8 @@ class YOLO(object):
 
         self.sess = K.get_session()
         self.boxes, self.scores, self.classes = self.generate()
+        
+        show_config(**self._defaults)
 
     #---------------------------------------------------#
     #   载入模型
@@ -99,7 +103,6 @@ class YOLO(object):
         self.yolo_model = yolo_body([self.input_shape[0], self.input_shape[1], 3], self.anchors_mask, self.num_classes, self.phi)
         self.yolo_model.load_weights(self.model_path)
         print('{} model, anchors, and classes loaded.'.format(model_path))
-
         #---------------------------------------------------------#
         #   在yolo_eval函数中，我们会对预测结果进行后处理
         #   后处理的内容包括，解码、非极大抑制、门限筛选等

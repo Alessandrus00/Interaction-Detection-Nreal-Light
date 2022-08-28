@@ -4,7 +4,6 @@
 from nets.yolo import yolo_body
 
 if __name__ == "__main__":
-    
     input_shape     = (416, 416, 3)
     anchors_mask    = [[3, 4, 5], [1, 2, 3]]
     num_classes     = 20
