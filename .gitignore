@@ -10,3 +10,8 @@ CustomTinyYOLOv4/map_out
 CustomTinyYOLOv4/model_data/yolov4_tiny_barracuda.onnx
 CustomTinyYOLOv4/model_data/yolov4_tiny.json
 CustomTinyYOLOv4/model_data/yolov4_tiny.onnx
+InteractionDetection/Assembly-CSharp.csproj
+InteractionDetection/InteractionDetection.sln
+InteractionDetection/NRSDK.csproj
+InteractionDetection/NRSDKEditor.csproj
+InteractionDetection/.vscode/settings.json
