@@ -16,3 +16,4 @@ InteractionDetection/NRSDK.csproj
 InteractionDetection/NRSDKEditor.csproj
 InteractionDetection/.vscode/settings.json
 InteractionDetection/Logs
+InteractionDetection/Library
