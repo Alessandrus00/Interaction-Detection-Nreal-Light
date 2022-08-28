@@ -7,6 +7,4 @@ CustomTinyYOLOv4/nets/__pycache__
 CustomTinyYOLOv4/tf-mac-m1/tensorflow-1.15.0-py3-none-any.whl
 .DS_Store
 CustomTinyYOLOv4/map_out
-CustomTinyYOLOv4/logs/ep400-loss0.462-val_loss0.456.h5
-CustomTinyYOLOv4/logs/ep390-loss0.464-val_loss0.456.h5
-CustomTinyYOLOv4/logs/ep380-loss0.467-val_loss0.457.h5
+CustomTinyYOLOv4/model_data/yolov4_tiny.onnx
