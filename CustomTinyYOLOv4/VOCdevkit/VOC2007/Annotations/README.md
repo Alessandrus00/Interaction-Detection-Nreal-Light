@@ -1,2 +1,2 @@
 # Images annotations
-This folder contains **XML** annotations of images in `VOCdevkit/VOC2007/JPEGImages`.
+This folder should contain **XML** annotations of images in `VOCdevkit/VOC2007/JPEGImages`. You can follow <a href="https://roboflow.com/convert/coco-json-to-pascal-voc-xml"> this guide</a> to get XML annotations if you have them in COCO format.
