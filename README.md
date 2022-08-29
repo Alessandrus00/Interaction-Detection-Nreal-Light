@@ -15,7 +15,7 @@ To create the system above, it was created an android application for the Nreal 
 3. 2D-3D transformation of the detected objects position;
 4. tracking of the objects 3D position;
 5. tracking of the user's hand;
-6. computation of the hand-objects euclidean distances to check if an interaction is made and show info about the objects.
+6. computation of the hand-objects euclidean distances to check if an interaction is made and, if so, show some info about the object the user interacted with.
 
 # Results
 
