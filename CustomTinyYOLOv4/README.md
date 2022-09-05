@@ -19,6 +19,6 @@ Note that inside `logs` and `model_data` there are files already created by me e
 To execute Tensorflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
 
 # References
-This repository was originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
+The files inside this folder were originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
 
 
