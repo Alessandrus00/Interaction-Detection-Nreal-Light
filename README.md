@@ -4,7 +4,7 @@ The main aim of this project is to support **factory workers** in their daily du
 
 # Solution
 
-To create the system above, it was created an android application for the Nreal Light glasses that periodically repeat the following steps:
+To create the system above, it was created an android application for the Nreal Light glasses that periodically repeats the following steps:
 
 <p align="center">
   <img src="docs/img/pipeline.png" width="80%" height="auto"/>
@@ -24,6 +24,18 @@ Once an interaction has been detected it will be shown a text and a video inform
 <p align="center">
   <img src="docs/img/tocco_cacciavite.gif" width="60%" height="auto"/>
 </p>
+
+# Quickstart
+
+To use this application on your own smartphone/computing unit just do the following steps:
+
+1. clone this repository into a folder;
+2. open the Unity project named `InteractionDetection` in UnityHub;
+2. go to **File > Build Settings**;
+3. click **build** to create the **.apk** file;
+4. install the apk file on your device.
+
+If you didn't yet install nebula (available on PlayStore), do it before opening the previously installed application. Enjoy the beauty of AR!
 
 # Author
 [Alessandro Resta](https://github.com/Alessandrus00)
