@@ -1,6 +1,6 @@
 # Training a custom Tiny YOLOv4 model with Keras
 
-In this section a custom model of Tiny YOLOv4 is trained using Keras framework. Training dataset used in this project is available <a href="https://iplab.dmi.unict.it/EHOI_SYNTH">here</a>, under `Download Real Dataset` (you just need `Annotations` and `Images`); you could also use your own dataset. Once downloaded, you have to convert it in PASCAL VOC format (you can follow <a href="https://roboflow.com/convert/coco-json-to-pascal-voc-xml"> this tutorial</a> made by **Roboflow**). After that just copy the **.xml** and **.jpg** into `VOCdevkit/VOC2007/Annotations/` and `VOCdevkit/VOC2007/JPEGImages/` respectively. Note that in Roboflow you don't have to split the dataset, it will be done later. Next steps are:
+In this section a custom model of Tiny YOLOv4 is trained using Keras framework. Training dataset used in this project is available <a href="https://iplab.dmi.unict.it/EHOI_SYNTH">here</a>, under **Download Real Dataset** (you just need **Annotations** and **Images**); you could also use your own dataset. Once downloaded, you have to convert it in PASCAL VOC format (you can follow <a href="https://roboflow.com/convert/coco-json-to-pascal-voc-xml"> this tutorial</a> made by **Roboflow**). After that just copy the **.xml** and **.jpg** into `VOCdevkit/VOC2007/Annotations/` and `VOCdevkit/VOC2007/JPEGImages/` respectively. Note that in Roboflow you don't have to split the dataset, it will be done later. Next steps are:
 1. Create a conda environment and install the requirements in `requirements.txt` via **pip**;
 2. run `voc_annotations.py` to split the dataset in **training**, **validation** and **test** sets and convert them to YOLO format (see `2007_train.txt` and `2007_val.txt` created after this script);
 3. run `train.py` to start training with your GPU (if you want to use the CPU just install tensorflow 1.14 instead of tensorflow-gpu 1.14);
@@ -19,6 +19,6 @@ Note that inside `logs` and `model_data` there are files already created by me e
 To execute Tenforflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
 
 # References
-The training part with Keras was originately created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided b <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a>y through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
+This repository was originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided b <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a>y through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
 
 
