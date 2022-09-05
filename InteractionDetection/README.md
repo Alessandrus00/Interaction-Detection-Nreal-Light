@@ -4,4 +4,4 @@ This android application has been developed with Unity and uses the NRSDK librar
 
 # References
 
-The trained model was used in Unity through Baracuda, thanks to the package provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a>.
+The trained model was used in Unity through Barracuda, thanks to the package provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a>.

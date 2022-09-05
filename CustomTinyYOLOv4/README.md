@@ -10,13 +10,13 @@ In this section a custom model of Tiny YOLOv4 is trained using Keras framework. 
 
 If you want to use this model in barracuda do the following extra steps:
 
-7. run `tools/model_converter/keras_to_onnx.py` to convert Keras weigths (**.h5**) + network structure (**.json**) to ONNX format;
+7. run `tools/model_converter/keras_to_onnx.py` to convert Keras weights (**.h5**) + network structure (**.json**) to ONNX format;
 8. run `tools/model_converter/onnx_to_barracuda.py` to get a barracuda compatible version of the model.
 
 Note that inside `logs` and `model_data` there are files already created by me executing the previous steps on this dataset. You can delete them if you want to restart the all process or change dataset (in `model_data` keep only `simhei.ttf`, `yolo_anchors.txt` and `yolov4_tiny_weights_coco.h5`).
 
 # Tensorflow on MAC M1 chip
-To execute Tenforflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
+To execute Tensorflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
 
 # References
 This repository was originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
