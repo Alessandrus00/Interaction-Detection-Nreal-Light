@@ -27,7 +27,7 @@ Once an interaction has been detected it will be shown a text and a video inform
 
 # Quickstart
 
-If you want to just use this application on your own smartphone + Nreal Light glasses setup, just download the already built apk file, available via this Google Drive <a href="https://drive.google.com/drive/folders/1JK751fjUOutuwkM7gZVN96SG1AfTAZ_B?usp=sharing">link</a>. If you want to edit this version to add some edits (e.g. change the ONNX model with another one created by you), you have to clone this repository and open the project folder named **InteractionDetection** in UnityHub. Then, before building the apk file, go to **File > Build Settings** and switch platform to **Android**. Enjoy the power of AR!
+If you want to just use this application on your own smartphone + Nreal Light glasses setup, just download the already built apk file, available via this Google Drive <a href="https://drive.google.com/drive/folders/1JK751fjUOutuwkM7gZVN96SG1AfTAZ_B?usp=sharing">link</a>. If you want to edit this version to add some edits (e.g. change the ONNX model with another one created by you), you have to clone this repository and open the project folder named **InteractionDetection** in UnityHub. Then, before building your final apk file, go to **File > Build Settings** and switch platform to **Android**. Enjoy the power of AR!
 
 NOTE: If you didn't yet install nebula (available on PlayStore), do it before opening the previously installed application.
 
