@@ -17,5 +17,7 @@ InteractionDetection/NRSDKEditor.csproj
 InteractionDetection/.vscode/settings.json
 InteractionDetection/Logs
 InteractionDetection/Library
+InteractionDetection/Temp
 InteractionDetection/obj
+InteractionDetection/interaction_detection_BurstDebugInformation_DoNotShip
 ._*
