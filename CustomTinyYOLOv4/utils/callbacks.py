@@ -138,8 +138,8 @@ class EvalCallback(keras.callbacks.Callback):
         self.period             = period
         
         #---------------------------------------------------------#
-        #   在yolo_eval函数中，我们会对预测结果进行后处理
-        #   后处理的内容包括，解码、非极大抑制、门限筛选等
+        #   Nella funzione yolo_eval, elaboreremo i risultati della previsione
+        # Il contenuto della post-elaborazione include la decodifica, la soppressione non massima, il filtraggio della soglia, ecc.
         #---------------------------------------------------------#
         self.boxes, self.scores, self.classes  = DecodeBox(
             self.model_body.get_output_at(0), 
@@ -164,20 +164,20 @@ class EvalCallback(keras.callbacks.Callback):
     def get_map_txt(self, image_id, image, class_names, map_out_path):
         f           = open(os.path.join(map_out_path, "detection-results/"+image_id+".txt"),"w") 
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
+        #   Converti qui l'immagine in un'immagine RGB per evitare errori nella previsione dell'immagine in scala di grigi.
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        #   Aggiungi barre grigie all'immagine per ottenere un ridimensionamento senza distorsioni
+        # Puoi anche ridimensionare direttamente per l'identificazione
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1],self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        #   Aggiungi la dimensione della dimensione del batch e normalizzala
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
         #---------------------------------------------------------#
-        #   将图像输入网络当中进行预测！
+        #   Inserisci l'immagine nella rete per fare previsioni!
         #---------------------------------------------------------#
         out_boxes, out_scores, out_classes = self.sess.run(
             [self.boxes, self.scores, self.classes],
@@ -217,20 +217,20 @@ class EvalCallback(keras.callbacks.Callback):
                 line        = annotation_line.split()
                 image_id    = os.path.basename(line[0]).split('.')[0]
                 #------------------------------#
-                #   读取图像并转换成RGB图像
+                #   leggi l'immagine e converti in immagine rgb
                 #------------------------------#
                 image       = Image.open(line[0])
                 #------------------------------#
-                #   获得预测框
+                #   ottenere la casella di previsione
                 #------------------------------#
                 gt_boxes    = np.array([np.array(list(map(int,box.split(',')))) for box in line[1:]])
                 #------------------------------#
-                #   获得预测txt
+                #   ottieni il pronostico txt
                 #------------------------------#
                 self.get_map_txt(image_id, image, self.class_names, self.map_out_path)
                 
                 #------------------------------#
-                #   获得真实框txt
+                #   ottieni il vero box txt
                 #------------------------------#
                 with open(os.path.join(self.map_out_path, "ground-truth/"+image_id+".txt"), "w") as new_f:
                     for box in gt_boxes:

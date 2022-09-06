@@ -37,8 +37,8 @@ class YoloDatasets(keras.utils.Sequence):
         for i in range(index * self.batch_size, (index + 1) * self.batch_size):  
             i           = i % self.length
             #---------------------------------------------------#
-            #   训练时进行数据的随机增强
-            #   验证时不进行数据的随机增强
+            #   Aumento casuale dei dati durante l'allenamento
+            # Non eseguire aumenti casuali dei dati durante la convalida
             #---------------------------------------------------#
             if self.mosaic and self.rand() < self.mosaic_prob and self.epoch_now < self.epoch_length * self.special_aug_ratio:
                 lines = sample(self.annotation_lines, 3)
@@ -70,17 +70,17 @@ class YoloDatasets(keras.utils.Sequence):
     def get_random_data(self, annotation_line, input_shape, max_boxes=500, jitter=.3, hue=.1, sat=0.7, val=0.4, random=True):
         line    = annotation_line.split()
         #------------------------------#
-        #   读取图像并转换成RGB图像
+        #   leggi l'immagine e converti in immagine rgb
         #------------------------------#
         image   = Image.open(line[0])
         image   = cvtColor(image)
         #------------------------------#
-        #   获得图像的高宽与目标高宽
+        #   Ottieni l'altezza e la larghezza dell'immagine e l'altezza e la larghezza di destinazione
         #------------------------------#
         iw, ih  = image.size
         h, w    = input_shape
         #------------------------------#
-        #   获得预测框
+        #   ottenere la casella di previsione
         #------------------------------#
         box     = np.array([np.array(list(map(int,box.split(',')))) for box in line[1:]])
 
@@ -92,7 +92,7 @@ class YoloDatasets(keras.utils.Sequence):
             dy = (h-nh)//2
 
             #---------------------------------#
-            #   将图像多余的部分加上灰条
+            #   Aggiungi barre grigie alle parti extra dell'immagine
             #---------------------------------#
             image       = image.resize((nw,nh), Image.BICUBIC)
             new_image   = Image.new('RGB', (w,h), (128,128,128))
@@ -100,7 +100,7 @@ class YoloDatasets(keras.utils.Sequence):
             image_data  = np.array(new_image, np.float32)
 
             #---------------------------------#
-            #   对真实框进行调整
+            #   Regola la scatola reale
             #---------------------------------#
             box_data = np.zeros((max_boxes,5))
             if len(box)>0:
@@ -119,7 +119,7 @@ class YoloDatasets(keras.utils.Sequence):
             return image_data, box_data
                 
         #------------------------------------------#
-        #   对图像进行缩放并且进行长和宽的扭曲
+        #   Ridimensiona l'immagine e distorce la lunghezza e la larghezza
         #------------------------------------------#
         new_ar = iw/ih * self.rand(1-jitter,1+jitter) / self.rand(1-jitter,1+jitter)
         scale = self.rand(.25, 2)
@@ -132,7 +132,7 @@ class YoloDatasets(keras.utils.Sequence):
         image = image.resize((nw,nh), Image.BICUBIC)
 
         #------------------------------------------#
-        #   将图像多余的部分加上灰条
+        #   Aggiungi barre grigie alle parti extra dell'immagine
         #------------------------------------------#
         dx = int(self.rand(0, w-nw))
         dy = int(self.rand(0, h-nh))
@@ -141,24 +141,24 @@ class YoloDatasets(keras.utils.Sequence):
         image = new_image
 
         #------------------------------------------#
-        #   翻转图像
+        #   capovolgere l'immagine
         #------------------------------------------#
         flip = self.rand()<.5
         if flip: image = image.transpose(Image.FLIP_LEFT_RIGHT)
 
         image_data      = np.array(image, np.uint8)
         #---------------------------------#
-        #   对图像进行色域变换
-        #   计算色域变换的参数
+        #   Trasformazione della gamma di colori di un'immagine
+        # Calcola i parametri della trasformazione della gamma cromatica
         #---------------------------------#
         r               = np.random.uniform(-1, 1, 3) * [hue, sat, val] + 1
         #---------------------------------#
-        #   将图像转到HSV上
+        #   trasferire l'immagine in hsv
         #---------------------------------#
         hue, sat, val   = cv2.split(cv2.cvtColor(image_data, cv2.COLOR_RGB2HSV))
         dtype           = image_data.dtype
         #---------------------------------#
-        #   应用变换
+        #   applicare la trasformazione
         #---------------------------------#
         x       = np.arange(0, 256, dtype=r.dtype)
         lut_hue = ((x * r[0]) % 180).astype(dtype)
@@ -169,7 +169,7 @@ class YoloDatasets(keras.utils.Sequence):
         image_data = cv2.cvtColor(image_data, cv2.COLOR_HSV2RGB)
 
         #---------------------------------#
-        #   对真实框进行调整
+        #   Regola la scatola reale
         #---------------------------------#
         box_data = np.zeros((max_boxes,5))
         if len(box)>0:
@@ -244,26 +244,26 @@ class YoloDatasets(keras.utils.Sequence):
         index       = 0
         for line in annotation_line:
             #---------------------------------#
-            #   每一行进行分割
+            #   dividere ogni riga
             #---------------------------------#
             line_content = line.split()
             #---------------------------------#
-            #   打开图片
+            #   immagine aperta
             #---------------------------------#
             image = Image.open(line_content[0])
             image = cvtColor(image)
             
             #---------------------------------#
-            #   图片的大小
+            #   dimensione dell'immagine
             #---------------------------------#
             iw, ih = image.size
             #---------------------------------#
-            #   保存框的位置
+            #   salva la posizione della casella
             #---------------------------------#
             box = np.array([np.array(list(map(int,box.split(',')))) for box in line_content[1:]])
             
             #---------------------------------#
-            #   是否翻转图片
+            #   se capovolgere l'immagine
             #---------------------------------#
             flip = self.rand()<.5
             if flip and len(box)>0:
@@ -271,7 +271,7 @@ class YoloDatasets(keras.utils.Sequence):
                 box[:, [0,2]] = iw - box[:, [2,0]]
 
             #------------------------------------------#
-            #   对图像进行缩放并且进行长和宽的扭曲
+            #   Ridimensiona l'immagine e distorce la lunghezza e la larghezza
             #------------------------------------------#
             new_ar = iw/ih * self.rand(1-jitter,1+jitter) / self.rand(1-jitter,1+jitter)
             scale = self.rand(.4, 1)
@@ -284,7 +284,7 @@ class YoloDatasets(keras.utils.Sequence):
             image = image.resize((nw, nh), Image.BICUBIC)
 
             #-----------------------------------------------#
-            #   将图片进行放置，分别对应四张分割图片的位置
+            #   Posizionare le immagini corrispondenti alle posizioni delle quattro immagini divise
             #-----------------------------------------------#
             if index == 0:
                 dx = int(w*min_offset_x) - nw
@@ -306,7 +306,7 @@ class YoloDatasets(keras.utils.Sequence):
             index = index + 1
             box_data = []
             #---------------------------------#
-            #   对box进行重新处理
+            #  Rielabora la scatola
             #---------------------------------#
             if len(box)>0:
                 np.random.shuffle(box)
@@ -325,7 +325,7 @@ class YoloDatasets(keras.utils.Sequence):
             box_datas.append(box_data)
 
         #---------------------------------#
-        #   将图片分割，放在一起
+        #   Dividi le immagini e mettile insieme
         #---------------------------------#
         cutx = int(w * min_offset_x)
         cuty = int(h * min_offset_y)
@@ -338,17 +338,17 @@ class YoloDatasets(keras.utils.Sequence):
 
         new_image       = np.array(new_image, np.uint8)
         #---------------------------------#
-        #   对图像进行色域变换
-        #   计算色域变换的参数
+        #   Trasformazione della gamma di colori di un'immagine
+        # Calcola i parametri della trasformazione della gamma cromatica
         #---------------------------------#
         r               = np.random.uniform(-1, 1, 3) * [hue, sat, val] + 1
         #---------------------------------#
-        #   将图像转到HSV上
+        #   trasferire l'immagine in hsv
         #---------------------------------#
         hue, sat, val   = cv2.split(cv2.cvtColor(new_image, cv2.COLOR_RGB2HSV))
         dtype           = new_image.dtype
         #---------------------------------#
-        #   应用变换
+        #   applicare la trasformazione
         #---------------------------------#
         x       = np.arange(0, 256, dtype=r.dtype)
         lut_hue = ((x * r[0]) % 180).astype(dtype)
@@ -359,12 +359,12 @@ class YoloDatasets(keras.utils.Sequence):
         new_image = cv2.cvtColor(new_image, cv2.COLOR_HSV2RGB)
 
         #---------------------------------#
-        #   对框进行进一步的处理
+        #   Eseguire ulteriori elaborazioni sulla scatola
         #---------------------------------#
         new_boxes = self.merge_bboxes(box_datas, cutx, cuty)
 
         #---------------------------------#
-        #   将box进行调整
+        #   regolare la scatola
         #---------------------------------#
         box_data = np.zeros((max_boxes, 5))
         if len(new_boxes)>0:
@@ -383,7 +383,7 @@ class YoloDatasets(keras.utils.Sequence):
         
         new_boxes = np.concatenate([box_1[box_1_valid, :], box_2[box_2_valid, :]], axis=0)
         #---------------------------------#
-        #   将box进行调整
+        #   regolare la scatola
         #---------------------------------#
         box_data = np.zeros((max_boxes, 5))
         if len(new_boxes)>0:
@@ -394,34 +394,34 @@ class YoloDatasets(keras.utils.Sequence):
     def preprocess_true_boxes(self, true_boxes, input_shape, anchors, num_classes):
         assert (true_boxes[..., 4]<num_classes).all(), 'class id must be less than num_classes'
         #-----------------------------------------------------------#
-        #   获得框的坐标和图片的大小
+        #   Ottieni le coordinate della scatola e le dimensioni dell'immagine
         #-----------------------------------------------------------#
         true_boxes  = np.array(true_boxes, dtype='float32')
         input_shape = np.array(input_shape, dtype='int32')
         
         #-----------------------------------------------------------#
-        #   一共有三个特征层数
+        #   Sono disponibili tre livelli di funzionalità
         #-----------------------------------------------------------#
         num_layers  = len(self.anchors_mask)
         #-----------------------------------------------------------#
-        #   m为图片数量，grid_shapes为网格的shape
+        #  M è il numero di immagini, le forme della griglia è la forma della griglia
         #-----------------------------------------------------------#
         m           = true_boxes.shape[0]
         grid_shapes = [input_shape // {0:32, 1:16, 2:8}[l] for l in range(num_layers)]
         #-----------------------------------------------------------#
-        #   y_true的格式为(m,13,13,3,85)(m,26,26,3,85)
+        #   Il formato di Y vero è (m,13,13,3,85)(m,26,26,3,85)
         #-----------------------------------------------------------#
         y_true = [np.zeros((m, grid_shapes[l][0], grid_shapes[l][1], len(self.anchors_mask[l]), 5 + num_classes),
                     dtype='float32') for l in range(num_layers)]
 
         #-----------------------------------------------------------#
-        #   通过计算获得真实框的中心和宽高
-        #   中心点(m,n,2) 宽高(m,n,2)
+        #   Ottieni il centro, la larghezza e l'altezza della scatola reale mediante calcolo
+        # punto centrale(m,n,2) larghezza e altezza(m,n,2)
         #-----------------------------------------------------------#
         boxes_xy = (true_boxes[..., 0:2] + true_boxes[..., 2:4]) // 2
         boxes_wh =  true_boxes[..., 2:4] - true_boxes[..., 0:2]
         #-----------------------------------------------------------#
-        #   将真实框归一化到小数形式
+        #   Normalizza la casella della verità fondamentale in forma decimale
         #-----------------------------------------------------------#
         true_boxes[..., 0:2] = boxes_xy / input_shape[::-1]
         true_boxes[..., 2:4] = boxes_wh / input_shape[::-1]
@@ -434,13 +434,13 @@ class YoloDatasets(keras.utils.Sequence):
         anchor_mins     = -anchor_maxes
 
         #-----------------------------------------------------------#
-        #   长宽要大于0才有效
+        #   La lunghezza e la larghezza devono essere maggiori di 0 per essere valide
         #-----------------------------------------------------------#
         valid_mask = boxes_wh[..., 0]>0
 
         for b in range(m):
             #-----------------------------------------------------------#
-            #   对每一张图进行处理
+            #   elaborare ogni immagine
             #-----------------------------------------------------------#
             wh = boxes_wh[b, valid_mask[b]]
             if len(wh) == 0: continue
@@ -452,7 +452,7 @@ class YoloDatasets(keras.utils.Sequence):
             box_mins    = - box_maxes
 
             #-----------------------------------------------------------#
-            #   计算所有真实框和先验框的交并比
+            #   Calcola il rapporto di intersezione di tutte le caselle della verità e delle caselle precedenti
             #   intersect_area  [n,9]
             #   box_area        [n,1]
             #   anchor_area     [1,9]
@@ -468,7 +468,7 @@ class YoloDatasets(keras.utils.Sequence):
 
             iou = intersect_area / (box_area + anchor_area - intersect_area)
             #-----------------------------------------------------------#
-            #   维度是[n,] 感谢 消尽不死鸟 的提醒
+            #  La dimensione è [n,] grazie per il promemoria
             #-----------------------------------------------------------#
             best_anchor = np.argmax(iou, axis=-1)
             sort_anchor = np.argsort(iou, axis=-1)
@@ -481,7 +481,7 @@ class YoloDatasets(keras.utils.Sequence):
 
             for t, n in enumerate(best_anchor):
                 #----------------------------------------#
-                #   防止匹配到的先验框不在anchors_mask中
+                #   Impedire che la casella a priori abbinata non sia nella maschera degli ancoraggi
                 #----------------------------------------#
                 if not check_in_anchors_mask(n, self.anchors_mask):
                     for index in sort_anchor[t][::-1]:
@@ -489,27 +489,27 @@ class YoloDatasets(keras.utils.Sequence):
                             n = index
                             break
                 #-----------------------------------------------------------#
-                #   找到每个真实框所属的特征层
+                #   Trova il livello di funzionalità a cui appartiene ciascuna scatola della verità di base
                 #-----------------------------------------------------------#
                 for l in range(num_layers):
                     if n in self.anchors_mask[l]:
                         #-----------------------------------------------------------#
-                        #   floor用于向下取整，找到真实框所属的特征层对应的x、y轴坐标
+                        #   Il pavimento viene utilizzato per arrotondare per difetto per trovare le coordinate degli assi x e y corrispondenti al feature layer a cui appartiene il frame reale
                         #-----------------------------------------------------------#
                         i = np.floor(true_boxes[b,t,0] * grid_shapes[l][1]).astype('int32')
                         j = np.floor(true_boxes[b,t,1] * grid_shapes[l][0]).astype('int32')
                         #-----------------------------------------------------------#
-                        #   k指的的当前这个特征点的第k个先验框
+                        #   Il k-esimo fotogramma a priori del punto di caratteristica corrente indicato da K
                         #-----------------------------------------------------------#
                         k = self.anchors_mask[l].index(n)
                         #-----------------------------------------------------------#
-                        #   c指的是当前这个真实框的种类
+                        #   C si riferisce al tipo della scatola reale corrente
                         #-----------------------------------------------------------#
                         c = true_boxes[b, t, 4].astype('int32')
                         #-----------------------------------------------------------#
-                        #   y_true的shape为(m,13,13,3,85)(m,26,26,3,85)
-                        #   最后的85可以拆分成4+1+80，4代表的是框的中心与宽高、
-                        #   1代表的是置信度、80代表的是种类
+                        #   La forma di y_true è (m, 13, 13, 3, 85) (m, 26, 26, 3, 85)
+                        # Gli ultimi 85 possono essere suddivisi in 4+1+80, 4 rappresenta il centro, la larghezza e l'altezza del riquadro,
+                        # 1 rappresenta la fiducia, 80 rappresenta la categoria
                         #-----------------------------------------------------------#
                         y_true[l][b, j, i, k, 0:4] = true_boxes[b, t, 0:4]
                         y_true[l][b, j, i, k, 4] = 1
