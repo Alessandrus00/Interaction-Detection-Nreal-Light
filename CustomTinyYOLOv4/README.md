@@ -5,7 +5,7 @@ In this section a custom model of Tiny YOLOv4 is trained using Keras framework. 
 2. run `voc_annotations.py` to split the dataset in **training**, **validation** and **test** sets and convert them to YOLO format (see `2007_train.txt` and `2007_val.txt` created after this script);
 3. run `train.py` to start training with your GPU (if you want to use the CPU just install tensorflow 1.14 instead of tensorflow-gpu 1.14);
 4. run `summary.py` to create a **json** file that contains the structure of the network;
-5. run `yolo.py` and `predict.py` to test out your model (by default it uses the last added weights in `logs`);
+5. run `yolo.py` and `predict.py` to test out your model (by default it uses the best weights in `logs`);
 6. (optional) evaluate the model with `get_map.py`.
 
 If you want to use this model in barracuda do the following extra steps:
@@ -19,6 +19,6 @@ Note that inside `logs` and `model_data` there are files already created by me e
 To execute Tensorflow on new M1 chips, check `tf-mac-m1`, which contains a small guide to make it work.
 
 # References
-The files inside this folder were originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just made few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
+Most files inside this folder were originally created by <a href="https://github.com/bubbliiiing/yolov4-tiny-keras"> Bubbliiiing</a> . I just add few changes to pursue the goal of this repo. The code inside `onnx_to_barracuda.py` was provided by <a href="https://github.com/keijiro/YoloV4TinyBarracuda">keijiro</a> through <a href="https://colab.research.google.com/drive/1YjSQ0IJvKimrc5-I4QXaWJ43-nbPqKOS?usp=sharing"> this colab notebook</a>.
 
 
