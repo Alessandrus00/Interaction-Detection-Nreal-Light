@@ -17,7 +17,7 @@ def box_ciou(b1, b2):
     ciou: tensor, shape=(batch, feat_w, feat_h, anchor_num, 1)
     """
     #-----------------------------------------------------------#
-    #   求出预测框左上角右下角
+    #   Trova l'angolo in alto a sinistra e l'angolo in basso a destra della casella di previsione
     #   b1_mins     (batch, feat_w, feat_h, anchor_num, 2)
     #   b1_maxes    (batch, feat_w, feat_h, anchor_num, 2)
     #-----------------------------------------------------------#
@@ -27,7 +27,7 @@ def box_ciou(b1, b2):
     b1_mins = b1_xy - b1_wh_half
     b1_maxes = b1_xy + b1_wh_half
     #-----------------------------------------------------------#
-    #   求出真实框左上角右下角
+    #   Trova l'angolo in alto a sinistra e l'angolo in basso a destra della scatola reale
     #   b2_mins     (batch, feat_w, feat_h, anchor_num, 2)
     #   b2_maxes    (batch, feat_w, feat_h, anchor_num, 2)
     #-----------------------------------------------------------#
@@ -38,7 +38,7 @@ def box_ciou(b1, b2):
     b2_maxes = b2_xy + b2_wh_half
 
     #-----------------------------------------------------------#
-    #   求真实框和预测框所有的iou
+    #   Trova tutti gli iou della scatola reale e della scatola prevista
     #   iou         (batch, feat_w, feat_h, anchor_num)
     #-----------------------------------------------------------#
     intersect_mins = K.maximum(b1_mins, b2_mins)
@@ -51,7 +51,7 @@ def box_ciou(b1, b2):
     iou = intersect_area / K.maximum(union_area, K.epsilon())
 
     #-----------------------------------------------------------#
-    #   计算中心的差距
+    #   Divario del centro di calcolo
     #   center_distance (batch, feat_w, feat_h, anchor_num)
     #-----------------------------------------------------------#
     center_distance = K.sum(K.square(b1_xy - b2_xy), axis=-1)
@@ -59,7 +59,7 @@ def box_ciou(b1, b2):
     enclose_maxes = K.maximum(b1_maxes, b2_maxes)
     enclose_wh = K.maximum(enclose_maxes - enclose_mins, 0.0)
     #-----------------------------------------------------------#
-    #   计算对角线距离
+    #   Calcola la distanza diagonale
     #   enclose_diagonal (batch, feat_w, feat_h, anchor_num)
     #-----------------------------------------------------------#
     enclose_diagonal = K.sum(K.square(enclose_wh), axis=-1)
@@ -73,7 +73,7 @@ def box_ciou(b1, b2):
     return ciou
 
 #---------------------------------------------------#
-#   平滑标签
+#   etichetta liscia
 #---------------------------------------------------#
 def _smooth_labels(y_true, label_smoothing):
     num_classes = tf.cast(K.shape(y_true)[-1], dtype=K.floatx())
@@ -81,12 +81,12 @@ def _smooth_labels(y_true, label_smoothing):
     return y_true * (1.0 - label_smoothing) + label_smoothing / num_classes
     
 #---------------------------------------------------#
-#   用于计算每个预测框与真实框的iou
+#   L'iou utilizzato per calcolare ogni casella prevista rispetto alla casella della verità fondamentale
 #---------------------------------------------------#
 def box_iou(b1, b2):
     #---------------------------------------------------#
     #   num_anchor,1,4
-    #   计算左上角的坐标和右下角的坐标
+    #   Calcola le coordinate dell'angolo in alto a sinistra e le coordinate dell'angolo in basso a destra
     #---------------------------------------------------#
     b1          = K.expand_dims(b1, -2)
     b1_xy       = b1[..., :2]
@@ -97,7 +97,7 @@ def box_iou(b1, b2):
 
     #---------------------------------------------------#
     #   1,n,4
-    #   计算左上角和右下角的坐标
+    #   Calcola le coordinate degli angoli in alto a sinistra e in basso a destra
     #---------------------------------------------------#
     b2          = K.expand_dims(b2, 0)
     b2_xy       = b2[..., :2]
@@ -107,7 +107,7 @@ def box_iou(b1, b2):
     b2_maxes    = b2_xy + b2_wh_half
 
     #---------------------------------------------------#
-    #   计算重合面积
+    #   Calcola l'area di sovrapposizione
     #---------------------------------------------------#
     intersect_mins  = K.maximum(b1_mins, b2_mins)
     intersect_maxes = K.minimum(b1_maxes, b2_maxes)
@@ -119,7 +119,7 @@ def box_iou(b1, b2):
     return iou
 
 #---------------------------------------------------#
-#   loss值计算
+#   Calcolo del valore di perdita
 #---------------------------------------------------#
 def yolo_loss(
     args, 
@@ -137,121 +137,121 @@ def yolo_loss(
 ):
     num_layers = len(anchors_mask)
     #---------------------------------------------------------------------------------------------------#
-    #   将预测结果和实际ground truth分开，args是[*model_body.output, *y_true]
-    #   y_true是一个列表，包含三个特征层，shape分别为:
-    #   (m,13,13,3,85)
-    #   (m,26,26,3,85)
-    #   yolo_outputs是一个列表，包含三个特征层，shape分别为:
-    #   (m,13,13,3,85)
-    #   (m,26,26,3,85)
+    # Separare il risultato della previsione dalla verità di base effettiva, args è [*model_body.output, *y_true]
+    # y_true è un elenco contenente tre feature layer con forme:
+    # (m,13,13,3,85)
+    # (m,26,26,3,85)
+    # yolo_outputs è un elenco contenente tre livelli di funzionalità con forme:
+    # (m,13,13,3,85)
+    # (m,26,26,3,85)
     #---------------------------------------------------------------------------------------------------#
     y_true          = args[num_layers:]
     yolo_outputs    = args[:num_layers]
 
     #-----------------------------------------------------------#
-    #   得到input_shpae为416,416 
+    #   ottieni input shpae come 416.416
     #-----------------------------------------------------------#
     input_shape = K.cast(input_shape, K.dtype(y_true[0]))
 
     #-----------------------------------------------------------#
-    #   取出每一张图片
-    #   m的值就是batch_size
+    #   scatta ogni foto
+    # Il valore di m è batch_size
     #-----------------------------------------------------------#
     m = K.shape(yolo_outputs[0])[0]
 
     loss    = 0
     #---------------------------------------------------------------------------------------------------#
-    #   y_true是一个列表，包含三个特征层，shape分别为(m,13,13,3,85),(m,26,26,3,85)。
-    #   yolo_outputs是一个列表，包含三个特征层，shape分别为(m,13,13,3,85),(m,26,26,3,85)。
+    #   y_true è un elenco contenente tre feature layer con forme (m, 13, 13, 3, 85), (m, 26, 26, 3, 85).
+    # yolo_outputs è un elenco contenente tre livelli di funzionalità con forme (m, 13, 13, 3, 85), (m, 26, 26, 3, 85).
     #---------------------------------------------------------------------------------------------------#
     for l in range(num_layers):
         #-----------------------------------------------------------#
-        #   以第一个特征层(m,13,13,3,85)为例子
-        #   取出该特征层中存在目标的点的位置。(m,13,13,3,1)
+        #   Prendi il primo feature layer (m, 13, 13, 3, 85) come esempio
+        # Elimina la posizione del punto in cui si trova il target nel feature layer. (m,13,13,3,1)
         #-----------------------------------------------------------#
         object_mask = y_true[l][..., 4:5]
         #-----------------------------------------------------------#
-        #   取出其对应的种类(m,13,13,3,80)
+        #   Estrarre il tipo corrispondente (m, 13, 13, 3, 80)
         #-----------------------------------------------------------#
         true_class_probs = y_true[l][..., 5:]
         if label_smoothing:
             true_class_probs = _smooth_labels(true_class_probs, label_smoothing)
 
         #-----------------------------------------------------------#
-        #   将yolo_outputs的特征层输出进行处理、获得四个返回值
-        #   其中：
-        #   grid        (13,13,1,2) 网格坐标
-        #   raw_pred    (m,13,13,3,85) 尚未处理的预测结果
-        #   pred_xy     (m,13,13,3,2) 解码后的中心坐标
-        #   pred_wh     (m,13,13,3,2) 解码后的宽高坐标
+        #   Elabora l'output del feature layer di yolo_outputs e ottieni quattro valori di ritorno
+        #   in:
+        # coordinate della griglia (13,13,1,2).
+        # raw_pred (m,13,13,3,85) risultati di previsione non elaborati
+        # pred_xy (m,13,13,3,2) coordinate centrali decodificate
+        # pred_wh (m,13,13,3,2) decodificate le coordinate di larghezza e altezza
         #-----------------------------------------------------------#
         grid, raw_pred, pred_xy, pred_wh = get_anchors_and_decode(yolo_outputs[l],
              anchors[anchors_mask[l]], num_classes, input_shape, calc_loss=True)
         
         #-----------------------------------------------------------#
-        #   pred_box是解码后的预测的box的位置
-        #   (m,13,13,3,4)
+        #   pred_box è la posizione della casella prevista decodificata
+        # (m,13,13,3,4)
         #-----------------------------------------------------------#
         pred_box = K.concatenate([pred_xy, pred_wh])
 
         #-----------------------------------------------------------#
-        #   找到负样本群组，第一步是创建一个数组，[]
+        #   Per trovare gruppi di campioni negativi, il primo passaggio consiste nel creare un array, []
         #-----------------------------------------------------------#
         ignore_mask = tf.TensorArray(K.dtype(y_true[0]), size=1, dynamic_size=True)
         object_mask_bool = K.cast(object_mask, 'bool')
         
         #-----------------------------------------------------------#
-        #   对每一张图片计算ignore_mask
+        #   Calcola ignora maschera per ogni immagine
         #-----------------------------------------------------------#
         def loop_body(b, ignore_mask):
             #-----------------------------------------------------------#
-            #   取出n个真实框：n,4
+            #  Estrarre n scatole reali: n, 4
             #-----------------------------------------------------------#
             true_box = tf.boolean_mask(y_true[l][b,...,0:4], object_mask_bool[b,...,0])
             #-----------------------------------------------------------#
-            #   计算预测框与真实框的iou
-            #   pred_box    13,13,3,4 预测框的坐标
-            #   true_box    n,4 真实框的坐标
-            #   iou         13,13,3,n 预测框和真实框的iou
+            #   Calcola l'iou della casella prevista e della casella della verità fondamentale
+            # pred_box 13,13,3,4 coordinate della casella di previsione
+            # true_box n,4 coordinate del true_box
+            # iou 13,13,3,n Iou di scatola predetta e scatola della verità fondamentale
             #-----------------------------------------------------------#
             iou = box_iou(pred_box[b], true_box)
 
             #-----------------------------------------------------------#
-            #   best_iou    13,13,3 每个特征点与真实框的最大重合程度
+            #  best_iou 13,13,3 Il massimo grado di coincidenza tra ciascun punto caratteristico e la scatola reale
             #-----------------------------------------------------------#
             best_iou = K.max(iou, axis=-1)
 
             #-----------------------------------------------------------#
-            #   判断预测框和真实框的最大iou小于ignore_thresh
-            #   则认为该预测框没有与之对应的真实框
-            #   该操作的目的是：
-            #   忽略预测结果与真实框非常对应特征点，因为这些框已经比较准了
-            #   不适合当作负样本，所以忽略掉。
+            #   A giudicare che il massimo iou della casella prevista e della casella reale è inferiore a ignore_thresh
+            # pensare che la casella prevista non abbia una casella reale corrispondente
+            # Lo scopo di questa operazione è di:
+            # Ignora i punti caratteristici che indicano che il risultato della previsione corrisponde molto bene al riquadro reale, perché questi riquadri sono già relativamente precisi
+            # non è adatto come campione negativo, quindi ignoralo.
             #-----------------------------------------------------------#
             ignore_mask = ignore_mask.write(b, K.cast(best_iou<ignore_thresh, K.dtype(true_box)))
             return b+1, ignore_mask
 
         #-----------------------------------------------------------#
-        #   在这个地方进行一个循环、循环是对每一张图片进行的
+        #   Fai un loop in questo posto, il loop viene eseguito per ogni immagine
         #-----------------------------------------------------------#
         _, ignore_mask = tf.while_loop(lambda b,*args: b<m, loop_body, [0, ignore_mask])
 
         #-----------------------------------------------------------#
-        #   ignore_mask用于提取出作为负样本的特征点
-        #   (m,13,13,3)
+        #   ignore_mask viene utilizzato per estrarre punti caratteristica come campioni negativi
+        # (m,13,13,3)
         #-----------------------------------------------------------#
         ignore_mask = ignore_mask.stack()
         #   (m,13,13,3,1)
         ignore_mask = K.expand_dims(ignore_mask, -1)
 
         #-----------------------------------------------------------#
-        #   真实框越大，比重越小，小框的比重更大。
-        #   使用iou损失时，大中小目标的回归损失不存在比例失衡问题，故弃用
+        #   Più grande è la scatola reale, minore è la proporzione e maggiore è la proporzione della scatola piccola.
+        # Quando si utilizza la perdita di iou, la perdita di regressione di obiettivi grandi, medi e piccoli non presenta il problema dello squilibrio proporzionale, quindi viene scartata
         #-----------------------------------------------------------#
         box_loss_scale = 2 - y_true[l][...,2:3]*y_true[l][...,3:4]
 
         #-----------------------------------------------------------#
-        #   计算Ciou loss
+        #   Calcola la perdita di Ciou
         #-----------------------------------------------------------#
         raw_true_box    = y_true[l][...,0:4]
         ciou            = box_ciou(pred_box, raw_true_box)
@@ -259,12 +259,12 @@ def yolo_loss(
         location_loss   = K.sum(ciou_loss)
         
         #------------------------------------------------------------------------------#
-        #   如果该位置本来有框，那么计算1与置信度的交叉熵
-        #   如果该位置本来没有框，那么计算0与置信度的交叉熵
-        #   在这其中会忽略一部分样本，这些被忽略的样本满足条件best_iou<ignore_thresh
-        #   该操作的目的是：
-        #   忽略预测结果与真实框非常对应特征点，因为这些框已经比较准了
-        #   不适合当作负样本，所以忽略掉。
+        #   Se c'è una casella nella posizione, calcola l'entropia incrociata di 1 e la confidenza
+        # Se non c'è una casella nella posizione, calcolare l'entropia incrociata di 0 e la confidenza
+        # Alcuni campioni verranno ignorati in questo, e questi campioni ignorati soddisfano la condizione best_iou<ignore_thresh
+        # Lo scopo di questa operazione è di:
+        # Ignora i punti caratteristici che indicano che il risultato della previsione corrisponde molto bene al riquadro reale, perché questi riquadri sono già relativamente precisi
+        # non è adatto come campione negativo, quindi ignoralo.
         #------------------------------------------------------------------------------#
         confidence_loss = object_mask * K.binary_crossentropy(object_mask, raw_pred[...,4:5], from_logits=True) + \
                     (1 - object_mask) * K.binary_crossentropy(object_mask, raw_pred[...,4:5], from_logits=True) * ignore_mask
@@ -272,13 +272,13 @@ def yolo_loss(
         class_loss      = object_mask * K.binary_crossentropy(true_class_probs, raw_pred[...,5:], from_logits=True)
 
         #-----------------------------------------------------------#
-        #   计算正样本数量
+        #   Calcola il numero di campioni positivi
         #-----------------------------------------------------------#
         num_pos         = tf.maximum(K.sum(K.cast(object_mask, tf.float32)), 1)
         num_neg         = tf.maximum(K.sum(K.cast((1 - object_mask) * ignore_mask, tf.float32)), 1)
         
         #-----------------------------------------------------------#
-        #   将所有损失求和
+        #   Somma tutte le perdite
         #-----------------------------------------------------------#
         location_loss   = location_loss * box_ratio / num_pos
         confidence_loss = K.sum(confidence_loss) * balance[l] * obj_ratio / (num_pos + num_neg)
