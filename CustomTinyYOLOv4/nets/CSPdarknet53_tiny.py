@@ -15,8 +15,8 @@ def route_group(input_layer, groups, group_id):
     return convs[group_id]
 
 #------------------------------------------------------#
-#   单次卷积DarknetConv2D
-#   如果步长为2则自己设定padding方式。
+#   Darknet convoluzione singola conv2 d
+#   Se la dimensione del passaggio è 2, imposta tu stesso il metodo di riempimento.
 #------------------------------------------------------#
 @wraps(Conv2D)
 def DarknetConv2D(*args, **kwargs):
@@ -26,7 +26,7 @@ def DarknetConv2D(*args, **kwargs):
     return Conv2D(*args, **darknet_conv_kwargs)
     
 #---------------------------------------------------#
-#   卷积块
+#   Blocco di convoluzione
 #   DarknetConv2D + BatchNormalization + LeakyReLU
 #---------------------------------------------------#
 def DarknetConv2D_BN_Leaky(*args, **kwargs):
@@ -60,42 +60,42 @@ def DarknetConv2D_BN_Leaky(*args, **kwargs):
                  MaxPooling2D
 '''
 #---------------------------------------------------#
-#   CSPdarknet_tiny的结构块
-#   存在一个大残差边
-#   这个大残差边绕过了很多的残差结构
+#   Blocchi strutturali di Cs pdarknet tiny
+#   C'è un ampio margine residuo
+#   Questo ampio bordo residuo bypassa molte strutture residue
 #---------------------------------------------------#
 def resblock_body(x, num_filters):
-    # 利用一个3x3卷积进行特征整合
+    # Utilizzare una convoluzione 3x3 per l'integrazione delle funzionalità
     x = DarknetConv2D_BN_Leaky(num_filters, (3,3))(x)
-    # 引出一个大的残差边route
+    # portare a un ampio percorso marginale residuo
     route = x
 
-    # 对特征层的通道进行分割，取第二部分作为主干部分。
+    # I canali del Feature Layer vengono segmentati e la seconda parte viene considerata come la parte backbone.
     x = Lambda(route_group, arguments={'groups':2, 'group_id':1})(x) 
-    # 对主干部分进行3x3卷积
+    # Convoluzione 3x3 sulla parte dorsale
     x = DarknetConv2D_BN_Leaky(int(num_filters/2), (3,3))(x)
-    # 引出一个小的残差边route_1
+    # conduce ad un piccolo percorso marginale residuo 1
     route_1 = x
-    # 对第主干部分进行3x3卷积
+    # Convoluzione 3x3 sulla prima parte della dorsale
     x = DarknetConv2D_BN_Leaky(int(num_filters/2), (3,3))(x)
-    # 主干部分与残差部分进行相接
+    # La parte principale è collegata con la parte residua
     x = Concatenate()([x, route_1])
 
-    # 对相接后的结果进行1x1卷积
+    # Convoluzione 1x1 sui risultati concatenati
     x = DarknetConv2D_BN_Leaky(num_filters, (1,1))(x)
     feat = x
     x = Concatenate()([route, x])
 
-    # 利用最大池化进行高和宽的压缩
+    # Compressione in altezza e larghezza con raggruppamento massimo
     x = MaxPooling2D(pool_size=[2,2],)(x)
 
     return x, feat
 
 #---------------------------------------------------#
-#   CSPdarknet_tiny的主体部分
+#   La parte principale di Cs pdarknet minuscola
 #---------------------------------------------------#
 def darknet_body(x):
-    # 首先利用两次步长为2x2的3x3卷积进行高和宽的压缩
+    # Per prima cosa usa due convoluzioni 3x3 con falcata 2x2 per la compressione di altezza e larghezza
     # 416,416,3 -> 208,208,32 -> 104,104,64
     x = ZeroPadding2D(((1,0),(1,0)))(x)
     x = DarknetConv2D_BN_Leaky(32, (3,3), strides=(2,2))(x)
@@ -106,8 +106,8 @@ def darknet_body(x):
     x, _ = resblock_body(x,num_filters = 64)
     # 52,52,128 -> 26,26,256
     x, _ = resblock_body(x,num_filters = 128)
-    # 26,26,256 -> x为13,13,512
-    #           -> feat1为26,26,256
+    # 26.26.256 -> x è 13.13.512
+    #           -> Feat1 è 26.26.256
     x, feat1 = resblock_body(x,num_filters = 256)
     # 13,13,512 -> 13,13,512
     x = DarknetConv2D_BN_Leaky(512, (3,3))(x)
