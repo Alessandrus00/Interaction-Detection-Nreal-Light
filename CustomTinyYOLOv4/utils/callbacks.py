@@ -138,8 +138,8 @@ class EvalCallback(keras.callbacks.Callback):
         self.period             = period
         
         #---------------------------------------------------------#
-        #   Nella funzione yolo_eval, elaboreremo i risultati della previsione
-        # Il contenuto della post-elaborazione include la decodifica, la soppressione non massima, il filtraggio della soglia, ecc.
+        # In the yolo_eval function, we will process the forecast results
+        # Post-processing content includes decoding, non-maximum suppression, threshold filtering, etc.
         #---------------------------------------------------------#
         self.boxes, self.scores, self.classes  = DecodeBox(
             self.model_body.get_output_at(0), 
@@ -164,20 +164,20 @@ class EvalCallback(keras.callbacks.Callback):
     def get_map_txt(self, image_id, image, class_names, map_out_path):
         f           = open(os.path.join(map_out_path, "detection-results/"+image_id+".txt"),"w") 
         #---------------------------------------------------------#
-        #   Converti qui l'immagine in un'immagine RGB per evitare errori nella previsione dell'immagine in scala di grigi.
+        #   Convert the image to an RGB image here to avoid errors in the prediction of the grayscale image.
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   Aggiungi barre grigie all'immagine per ottenere un ridimensionamento senza distorsioni
-        # Puoi anche ridimensionare direttamente per l'identificazione
+        # Add gray bars to the image for distortion-free scaling
+        # You can also resize directly for identification
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1],self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   Aggiungi la dimensione della dimensione del batch e normalizzala
+        #   Add the dimension of the batch size and normalize it
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
         #---------------------------------------------------------#
-        #   Inserisci l'immagine nella rete per fare previsioni!
+        #   Insert the image into the network to make predictions!
         #---------------------------------------------------------#
         out_boxes, out_scores, out_classes = self.sess.run(
             [self.boxes, self.scores, self.classes],
@@ -217,20 +217,20 @@ class EvalCallback(keras.callbacks.Callback):
                 line        = annotation_line.split()
                 image_id    = os.path.basename(line[0]).split('.')[0]
                 #------------------------------#
-                #   leggi l'immagine e converti in immagine rgb
+                #   read the image and convert to rgb image
                 #------------------------------#
                 image       = Image.open(line[0])
                 #------------------------------#
-                #   ottenere la casella di previsione
+                #   get the prediction box
                 #------------------------------#
                 gt_boxes    = np.array([np.array(list(map(int,box.split(',')))) for box in line[1:]])
                 #------------------------------#
-                #   ottieni il pronostico txt
+                #  get the prediction txt
                 #------------------------------#
                 self.get_map_txt(image_id, image, self.class_names, self.map_out_path)
                 
                 #------------------------------#
-                #   ottieni il vero box txt
+                #   you get the real txt box
                 #------------------------------#
                 with open(os.path.join(self.map_out_path, "ground-truth/"+image_id+".txt"), "w") as new_f:
                     for box in gt_boxes:

@@ -11,14 +11,14 @@ from nets.yolo_training import yolo_loss
 attention = [se_block, cbam_block, eca_block, ca_block]
 
 #---------------------------------------------------#
-#   Livello funzionalità > Output finale
+#   Functionality level> Final output
 #---------------------------------------------------#
 def yolo_body(input_shape, anchors_mask, num_classes, phi = 0):
     inputs = Input(input_shape)
     #---------------------------------------------------#
-    #   Genera il modello backbone di CSPdarknet53_tiny
-    # La forma di feat1 è 26,26,256
-    # La forma di feat2 è 13.13.512
+    # Generate CSPdarknet53_tiny backbone model
+    # The form of feat1 is 26,26,256
+    # The form of feat2 is 13.13.512
     #---------------------------------------------------#
     feat1, feat2 = darknet_body(inputs)
     if phi >= 1 and phi <= 4:

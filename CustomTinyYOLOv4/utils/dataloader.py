@@ -37,8 +37,8 @@ class YoloDatasets(keras.utils.Sequence):
         for i in range(index * self.batch_size, (index + 1) * self.batch_size):  
             i           = i % self.length
             #---------------------------------------------------#
-            #   Aumento casuale dei dati durante l'allenamento
-            # Non eseguire aumenti casuali dei dati durante la convalida
+            # Randomly increasing data during training
+            # Do not perform random data increases during validation
             #---------------------------------------------------#
             if self.mosaic and self.rand() < self.mosaic_prob and self.epoch_now < self.epoch_length * self.special_aug_ratio:
                 lines = sample(self.annotation_lines, 3)
@@ -70,17 +70,17 @@ class YoloDatasets(keras.utils.Sequence):
     def get_random_data(self, annotation_line, input_shape, max_boxes=500, jitter=.3, hue=.1, sat=0.7, val=0.4, random=True):
         line    = annotation_line.split()
         #------------------------------#
-        #   leggi l'immagine e converti in immagine rgb
+        #   read the image and convert to rgb image
         #------------------------------#
         image   = Image.open(line[0])
         image   = cvtColor(image)
         #------------------------------#
-        #   Ottieni l'altezza e la larghezza dell'immagine e l'altezza e la larghezza di destinazione
+        #   Get the height and width of the image and the target height and width
         #------------------------------#
         iw, ih  = image.size
         h, w    = input_shape
         #------------------------------#
-        #   ottenere la casella di previsione
+        #   get the prediction box
         #------------------------------#
         box     = np.array([np.array(list(map(int,box.split(',')))) for box in line[1:]])
 
@@ -92,7 +92,7 @@ class YoloDatasets(keras.utils.Sequence):
             dy = (h-nh)//2
 
             #---------------------------------#
-            #   Aggiungi barre grigie alle parti extra dell'immagine
+            #   Add gray bars to the extra parts of the image
             #---------------------------------#
             image       = image.resize((nw,nh), Image.BICUBIC)
             new_image   = Image.new('RGB', (w,h), (128,128,128))
@@ -100,7 +100,7 @@ class YoloDatasets(keras.utils.Sequence):
             image_data  = np.array(new_image, np.float32)
 
             #---------------------------------#
-            #   Regola la scatola reale
+            #   Adjust the royal box
             #---------------------------------#
             box_data = np.zeros((max_boxes,5))
             if len(box)>0:
@@ -119,7 +119,7 @@ class YoloDatasets(keras.utils.Sequence):
             return image_data, box_data
                 
         #------------------------------------------#
-        #   Ridimensiona l'immagine e distorce la lunghezza e la larghezza
+        #   Resize the image and distort the length and width
         #------------------------------------------#
         new_ar = iw/ih * self.rand(1-jitter,1+jitter) / self.rand(1-jitter,1+jitter)
         scale = self.rand(.25, 2)
@@ -132,7 +132,7 @@ class YoloDatasets(keras.utils.Sequence):
         image = image.resize((nw,nh), Image.BICUBIC)
 
         #------------------------------------------#
-        #   Aggiungi barre grigie alle parti extra dell'immagine
+        #   Add gray bars to the extra parts of the image
         #------------------------------------------#
         dx = int(self.rand(0, w-nw))
         dy = int(self.rand(0, h-nh))
@@ -141,24 +141,24 @@ class YoloDatasets(keras.utils.Sequence):
         image = new_image
 
         #------------------------------------------#
-        #   capovolgere l'immagine
+        #   flip the image
         #------------------------------------------#
         flip = self.rand()<.5
         if flip: image = image.transpose(Image.FLIP_LEFT_RIGHT)
 
         image_data      = np.array(image, np.uint8)
         #---------------------------------#
-        #   Trasformazione della gamma di colori di un'immagine
-        # Calcola i parametri della trasformazione della gamma cromatica
+        # Transformation of the color gamut of an image
+        # Calculate the parameters of the color gamut transformation
         #---------------------------------#
         r               = np.random.uniform(-1, 1, 3) * [hue, sat, val] + 1
         #---------------------------------#
-        #   trasferire l'immagine in hsv
+        #   transfer the image to hsv
         #---------------------------------#
         hue, sat, val   = cv2.split(cv2.cvtColor(image_data, cv2.COLOR_RGB2HSV))
         dtype           = image_data.dtype
         #---------------------------------#
-        #   applicare la trasformazione
+        #   apply the transformation
         #---------------------------------#
         x       = np.arange(0, 256, dtype=r.dtype)
         lut_hue = ((x * r[0]) % 180).astype(dtype)
@@ -169,7 +169,7 @@ class YoloDatasets(keras.utils.Sequence):
         image_data = cv2.cvtColor(image_data, cv2.COLOR_HSV2RGB)
 
         #---------------------------------#
-        #   Regola la scatola reale
+        #   Adjust the royal box
         #---------------------------------#
         box_data = np.zeros((max_boxes,5))
         if len(box)>0:
@@ -244,26 +244,26 @@ class YoloDatasets(keras.utils.Sequence):
         index       = 0
         for line in annotation_line:
             #---------------------------------#
-            #   dividere ogni riga
+            #   split each row
             #---------------------------------#
             line_content = line.split()
             #---------------------------------#
-            #   immagine aperta
+            #   open image
             #---------------------------------#
             image = Image.open(line_content[0])
             image = cvtColor(image)
             
             #---------------------------------#
-            #   dimensione dell'immagine
+            #   image size
             #---------------------------------#
             iw, ih = image.size
             #---------------------------------#
-            #   salva la posizione della casella
+            #   save the position of the box
             #---------------------------------#
             box = np.array([np.array(list(map(int,box.split(',')))) for box in line_content[1:]])
             
             #---------------------------------#
-            #   se capovolgere l'immagine
+            #   whether to flip the image
             #---------------------------------#
             flip = self.rand()<.5
             if flip and len(box)>0:
@@ -271,7 +271,7 @@ class YoloDatasets(keras.utils.Sequence):
                 box[:, [0,2]] = iw - box[:, [2,0]]
 
             #------------------------------------------#
-            #   Ridimensiona l'immagine e distorce la lunghezza e la larghezza
+            #   Resize the image and distort the length and width
             #------------------------------------------#
             new_ar = iw/ih * self.rand(1-jitter,1+jitter) / self.rand(1-jitter,1+jitter)
             scale = self.rand(.4, 1)
@@ -284,7 +284,7 @@ class YoloDatasets(keras.utils.Sequence):
             image = image.resize((nw, nh), Image.BICUBIC)
 
             #-----------------------------------------------#
-            #   Posizionare le immagini corrispondenti alle posizioni delle quattro immagini divise
+            #   Place the images corresponding to the positions of the four split images
             #-----------------------------------------------#
             if index == 0:
                 dx = int(w*min_offset_x) - nw
@@ -306,7 +306,7 @@ class YoloDatasets(keras.utils.Sequence):
             index = index + 1
             box_data = []
             #---------------------------------#
-            #  Rielabora la scatola
+            #  Rework the box
             #---------------------------------#
             if len(box)>0:
                 np.random.shuffle(box)
@@ -325,7 +325,7 @@ class YoloDatasets(keras.utils.Sequence):
             box_datas.append(box_data)
 
         #---------------------------------#
-        #   Dividi le immagini e mettile insieme
+        #   Divide the images and put them together
         #---------------------------------#
         cutx = int(w * min_offset_x)
         cuty = int(h * min_offset_y)
@@ -338,17 +338,17 @@ class YoloDatasets(keras.utils.Sequence):
 
         new_image       = np.array(new_image, np.uint8)
         #---------------------------------#
-        #   Trasformazione della gamma di colori di un'immagine
-        # Calcola i parametri della trasformazione della gamma cromatica
+        # Transformation of the color gamut of an image
+        # Calculate the parameters of the color gamut transformation
         #---------------------------------#
         r               = np.random.uniform(-1, 1, 3) * [hue, sat, val] + 1
         #---------------------------------#
-        #   trasferire l'immagine in hsv
+        #  transfer the image to hsv
         #---------------------------------#
         hue, sat, val   = cv2.split(cv2.cvtColor(new_image, cv2.COLOR_RGB2HSV))
         dtype           = new_image.dtype
         #---------------------------------#
-        #   applicare la trasformazione
+        #   apply the transformation
         #---------------------------------#
         x       = np.arange(0, 256, dtype=r.dtype)
         lut_hue = ((x * r[0]) % 180).astype(dtype)
@@ -359,12 +359,12 @@ class YoloDatasets(keras.utils.Sequence):
         new_image = cv2.cvtColor(new_image, cv2.COLOR_HSV2RGB)
 
         #---------------------------------#
-        #   Eseguire ulteriori elaborazioni sulla scatola
+        #   Perform further processing on the box
         #---------------------------------#
         new_boxes = self.merge_bboxes(box_datas, cutx, cuty)
 
         #---------------------------------#
-        #   regolare la scatola
+        #   adjust the box
         #---------------------------------#
         box_data = np.zeros((max_boxes, 5))
         if len(new_boxes)>0:
@@ -383,7 +383,7 @@ class YoloDatasets(keras.utils.Sequence):
         
         new_boxes = np.concatenate([box_1[box_1_valid, :], box_2[box_2_valid, :]], axis=0)
         #---------------------------------#
-        #   regolare la scatola
+        #   adjust the box
         #---------------------------------#
         box_data = np.zeros((max_boxes, 5))
         if len(new_boxes)>0:
@@ -394,34 +394,34 @@ class YoloDatasets(keras.utils.Sequence):
     def preprocess_true_boxes(self, true_boxes, input_shape, anchors, num_classes):
         assert (true_boxes[..., 4]<num_classes).all(), 'class id must be less than num_classes'
         #-----------------------------------------------------------#
-        #   Ottieni le coordinate della scatola e le dimensioni dell'immagine
+        #   Get the coordinates of the box and the dimensions of the image
         #-----------------------------------------------------------#
         true_boxes  = np.array(true_boxes, dtype='float32')
         input_shape = np.array(input_shape, dtype='int32')
         
         #-----------------------------------------------------------#
-        #   Sono disponibili tre livelli di funzionalità
+        #   There are three levels of functionality
         #-----------------------------------------------------------#
         num_layers  = len(self.anchors_mask)
         #-----------------------------------------------------------#
-        #  M è il numero di immagini, le forme della griglia è la forma della griglia
+        #  m is the number of images, the shapes of the grid is the shape of the grid
         #-----------------------------------------------------------#
         m           = true_boxes.shape[0]
         grid_shapes = [input_shape // {0:32, 1:16, 2:8}[l] for l in range(num_layers)]
         #-----------------------------------------------------------#
-        #   Il formato di Y vero è (m,13,13,3,85)(m,26,26,3,85)
+        #   The format of true y is (m, 13,13,3,85) (m, 26,26,3,85)
         #-----------------------------------------------------------#
         y_true = [np.zeros((m, grid_shapes[l][0], grid_shapes[l][1], len(self.anchors_mask[l]), 5 + num_classes),
                     dtype='float32') for l in range(num_layers)]
 
         #-----------------------------------------------------------#
-        #   Ottieni il centro, la larghezza e l'altezza della scatola reale mediante calcolo
-        # punto centrale(m,n,2) larghezza e altezza(m,n,2)
+        # Get the center, width and height of the actual box by calculation
+        # center point (m, n, 2) width and height (m, n, 2)
         #-----------------------------------------------------------#
         boxes_xy = (true_boxes[..., 0:2] + true_boxes[..., 2:4]) // 2
         boxes_wh =  true_boxes[..., 2:4] - true_boxes[..., 0:2]
         #-----------------------------------------------------------#
-        #   Normalizza la casella della verità fondamentale in forma decimale
+        #   Normalizes the fundamental truth box in decimal form
         #-----------------------------------------------------------#
         true_boxes[..., 0:2] = boxes_xy / input_shape[::-1]
         true_boxes[..., 2:4] = boxes_wh / input_shape[::-1]
@@ -434,13 +434,13 @@ class YoloDatasets(keras.utils.Sequence):
         anchor_mins     = -anchor_maxes
 
         #-----------------------------------------------------------#
-        #   La lunghezza e la larghezza devono essere maggiori di 0 per essere valide
+        #   The length and width must be greater than 0 to be valid
         #-----------------------------------------------------------#
         valid_mask = boxes_wh[..., 0]>0
 
         for b in range(m):
             #-----------------------------------------------------------#
-            #   elaborare ogni immagine
+            #   process each image
             #-----------------------------------------------------------#
             wh = boxes_wh[b, valid_mask[b]]
             if len(wh) == 0: continue
@@ -452,11 +452,11 @@ class YoloDatasets(keras.utils.Sequence):
             box_mins    = - box_maxes
 
             #-----------------------------------------------------------#
-            #   Calcola il rapporto di intersezione di tutte le caselle della verità e delle caselle precedenti
-            #   intersect_area  [n,9]
-            #   box_area        [n,1]
-            #   anchor_area     [1,9]
-            #   iou             [n,9]
+            # Calculate the intersection ratio of all the truth boxes and previous boxes
+            # intersect_area [n, 9]
+            # box_area [n, 1]
+            # anchor_area [1,9]
+            # iou [n, 9]
             #-----------------------------------------------------------#
             intersect_mins  = np.maximum(box_mins, anchor_mins)
             intersect_maxes = np.minimum(box_maxes, anchor_maxes)
@@ -468,7 +468,7 @@ class YoloDatasets(keras.utils.Sequence):
 
             iou = intersect_area / (box_area + anchor_area - intersect_area)
             #-----------------------------------------------------------#
-            #  La dimensione è [n,] grazie per il promemoria
+            #  The size is [n,] thanks for the reminder
             #-----------------------------------------------------------#
             best_anchor = np.argmax(iou, axis=-1)
             sort_anchor = np.argsort(iou, axis=-1)
@@ -481,7 +481,7 @@ class YoloDatasets(keras.utils.Sequence):
 
             for t, n in enumerate(best_anchor):
                 #----------------------------------------#
-                #   Impedire che la casella a priori abbinata non sia nella maschera degli ancoraggi
+                #   Prevent the a priori matched box from not being in the anchor mask
                 #----------------------------------------#
                 if not check_in_anchors_mask(n, self.anchors_mask):
                     for index in sort_anchor[t][::-1]:
@@ -489,27 +489,27 @@ class YoloDatasets(keras.utils.Sequence):
                             n = index
                             break
                 #-----------------------------------------------------------#
-                #   Trova il livello di funzionalità a cui appartiene ciascuna scatola della verità di base
+                #   Find the level of functionality to which each basic truth box belongs
                 #-----------------------------------------------------------#
                 for l in range(num_layers):
                     if n in self.anchors_mask[l]:
                         #-----------------------------------------------------------#
-                        #   Il pavimento viene utilizzato per arrotondare per difetto per trovare le coordinate degli assi x e y corrispondenti al feature layer a cui appartiene il frame reale
+                        #   The floor is used to round down to find the coordinates of the x and y axes corresponding to the feature layer to which the real frame belongs
                         #-----------------------------------------------------------#
                         i = np.floor(true_boxes[b,t,0] * grid_shapes[l][1]).astype('int32')
                         j = np.floor(true_boxes[b,t,1] * grid_shapes[l][0]).astype('int32')
                         #-----------------------------------------------------------#
-                        #   Il k-esimo fotogramma a priori del punto di caratteristica corrente indicato da K
+                        #   The k-th a priori frame of the current characteristic point indicated by k.
                         #-----------------------------------------------------------#
                         k = self.anchors_mask[l].index(n)
                         #-----------------------------------------------------------#
-                        #   C si riferisce al tipo della scatola reale corrente
+                        #   c refers to the current actual box type
                         #-----------------------------------------------------------#
                         c = true_boxes[b, t, 4].astype('int32')
                         #-----------------------------------------------------------#
-                        #   La forma di y_true è (m, 13, 13, 3, 85) (m, 26, 26, 3, 85)
-                        # Gli ultimi 85 possono essere suddivisi in 4+1+80, 4 rappresenta il centro, la larghezza e l'altezza del riquadro,
-                        # 1 rappresenta la fiducia, 80 rappresenta la categoria
+                        # The form of y_true is (m, 13, 13, 3, 85) (m, 26, 26, 3, 85)
+                        # The last 85 can be divided into 4 + 1 + 80, 4 represents the center, width and height of the box,
+                        # 1 represents trust, 80 represents the category
                         #-----------------------------------------------------------#
                         y_true[l][b, j, i, k, 0:4] = true_boxes[b, t, 0:4]
                         y_true[l][b, j, i, k, 4] = 1

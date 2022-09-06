@@ -15,8 +15,8 @@ def route_group(input_layer, groups, group_id):
     return convs[group_id]
 
 #------------------------------------------------------#
-#   Darknet convoluzione singola conv2 d
-#   Se la dimensione del passaggio è 2, imposta tu stesso il metodo di riempimento.
+# Darknet single convolution conv2 d
+# If the step size is 2, set the fill method yourself.
 #------------------------------------------------------#
 @wraps(Conv2D)
 def DarknetConv2D(*args, **kwargs):
@@ -26,8 +26,8 @@ def DarknetConv2D(*args, **kwargs):
     return Conv2D(*args, **darknet_conv_kwargs)
     
 #---------------------------------------------------#
-#   Blocco di convoluzione
-#   DarknetConv2D + BatchNormalization + LeakyReLU
+# Convolution block
+# DarknetConv2D + BatchNormalization + LeakyReLU
 #---------------------------------------------------#
 def DarknetConv2D_BN_Leaky(*args, **kwargs):
     no_bias_kwargs = {'use_bias': False}
@@ -60,43 +60,43 @@ def DarknetConv2D_BN_Leaky(*args, **kwargs):
                  MaxPooling2D
 '''
 #---------------------------------------------------#
-#   Blocchi strutturali di Cs pdarknet tiny
-#   C'è un ampio margine residuo
-#   Questo ampio bordo residuo bypassa molte strutture residue
+# Structural blocks of Cs pdarknet tiny
+# There is a large residual margin
+# This large residual edge bypasses many residual structures
 #---------------------------------------------------#
 def resblock_body(x, num_filters):
-    # Utilizzare una convoluzione 3x3 per l'integrazione delle funzionalità
+    # Use a 3x3 convolution for feature integration
     x = DarknetConv2D_BN_Leaky(num_filters, (3,3))(x)
-    # portare a un ampio percorso marginale residuo
+    # lead to a large residual marginal path
     route = x
 
-    # I canali del Feature Layer vengono segmentati e la seconda parte viene considerata come la parte backbone.
+    # The channels of the feature layer are segmented and the second part is treated as the backbone part.
     x = Lambda(route_group, arguments={'groups':2, 'group_id':1})(x) 
-    # Convoluzione 3x3 sulla parte dorsale
+    # 3x3 convolution on the dorsal side
     x = DarknetConv2D_BN_Leaky(int(num_filters/2), (3,3))(x)
-    # conduce ad un piccolo percorso marginale residuo 1
+    # leads to a small residual marginal path 1
     route_1 = x
-    # Convoluzione 3x3 sulla prima parte della dorsale
+    # 3x3 convolution on the first part of the dorsal
     x = DarknetConv2D_BN_Leaky(int(num_filters/2), (3,3))(x)
-    # La parte principale è collegata con la parte residua
+    # The main part is connected with the residual part
     x = Concatenate()([x, route_1])
 
-    # Convoluzione 1x1 sui risultati concatenati
+    # 1x1 convolution on chained results
     x = DarknetConv2D_BN_Leaky(num_filters, (1,1))(x)
     feat = x
     x = Concatenate()([route, x])
 
-    # Compressione in altezza e larghezza con raggruppamento massimo
+    # Compression in height and width with maximum grouping
     x = MaxPooling2D(pool_size=[2,2],)(x)
 
     return x, feat
 
 #---------------------------------------------------#
-#   La parte principale di Cs pdarknet minuscola
+#   The main part of Cs lowercase pdarknet
 #---------------------------------------------------#
 def darknet_body(x):
-    # Per prima cosa usa due convoluzioni 3x3 con falcata 2x2 per la compressione di altezza e larghezza
-    # 416,416,3 -> 208,208,32 -> 104,104,64
+    # First use two 3x3 convolutions with a 2x2 stride for height and width compression
+    # 416,416.3 -> 208,208.32 -> 104,104,64
     x = ZeroPadding2D(((1,0),(1,0)))(x)
     x = DarknetConv2D_BN_Leaky(32, (3,3), strides=(2,2))(x)
     x = ZeroPadding2D(((1,0),(1,0)))(x)
@@ -106,8 +106,8 @@ def darknet_body(x):
     x, _ = resblock_body(x,num_filters = 64)
     # 52,52,128 -> 26,26,256
     x, _ = resblock_body(x,num_filters = 128)
-    # 26.26.256 -> x è 13.13.512
-    #           -> Feat1 è 26.26.256
+    # 26.26.256 -> x is 13.13.512
+    #           -> Feat1 is 26.26.256
     x, feat1 = resblock_body(x,num_filters = 256)
     # 13,13,512 -> 13,13,512
     x = DarknetConv2D_BN_Leaky(512, (3,3))(x)

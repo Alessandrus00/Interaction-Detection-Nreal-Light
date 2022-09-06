@@ -1,24 +1,24 @@
 #-------------------------------------------------------#
-#   用于处理COCO数据集，根据json文件生成txt文件用于训练
+#  Used to process Coco dataset, generate txt files for training based on json files
 #-------------------------------------------------------#
 import json
 import os
 from collections import defaultdict
 
 #-------------------------------------------------------#
-#   指向了COCO训练集与验证集图片的路径
+#   Routes for Coco training set and validation set images
 #-------------------------------------------------------#
 train_datasets_path     = "coco_dataset/train2017"
 val_datasets_path       = "coco_dataset/val2017"
 
 #-------------------------------------------------------#
-#   指向了COCO训练集与验证集标签的路径
+#   Coco training paths and validation labels
 #-------------------------------------------------------#
 train_annotation_path   = "coco_dataset/annotations/instances_train2017.json"
 val_annotation_path     = "coco_dataset/annotations/instances_val2017.json"
 
 #-------------------------------------------------------#
-#   生成的txt文件路径
+#   Path to the txt generator
 #-------------------------------------------------------#
 train_output_path       = "coco_train.txt"
 val_output_path         = "coco_val.txt"

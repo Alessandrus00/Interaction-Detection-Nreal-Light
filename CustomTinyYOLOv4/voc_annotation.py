@@ -7,30 +7,30 @@ import numpy as np
 from utils.utils import get_classes
 
 #--------------------------------------------------------------------------------------------------------------------------------#
-#   annotation_mode用于指定该文件运行时计算的内容
-#   annotation_mode为0代表整个标签处理过程，包括获得VOCdevkit/VOC2007/ImageSets里面的txt以及训练用的2007_train.txt、2007_val.txt
-#   annotation_mode为1代表获得VOCdevkit/VOC2007/ImageSets里面的txt
-#   annotation_mode为2代表获得训练用的2007_train.txt、2007_val.txt
+# annotation_mode is used to specify what is calculated when the file is run
+# annotation_mode is 0 to represent the entire label processing process, including obtaining txt in VOCdevkit/VOC2007/ImageSets and 2007_train.txt, 2007_val.txt for training
+# annotation_mode is 1 to get the txt in VOCdevkit/VOC2007/ImageSets
+# annotation_mode is 2 to obtain 2007_train.txt, 2007_val.txt for training
 #--------------------------------------------------------------------------------------------------------------------------------#
 annotation_mode     = 0
 #-------------------------------------------------------------------#
-#   必须要修改，用于生成2007_train.txt、2007_val.txt的目标信息
-#   与训练和预测所用的classes_path一致即可
-#   如果生成的2007_train.txt里面没有目标信息
-#   那么就是因为classes没有设定正确
-#   仅在annotation_mode为0和2的时候有效
+# Must be modified to generate target information for 2007_train.txt and 2007_val.txt
+# Consistent with the classes_path used for training and prediction
+# If there is no target information in the generated 2007_train.txt
+# Then it is because the classes are not set correctly
+# Only valid when annotation_mode is 0 and 2
 #-------------------------------------------------------------------#
 classes_path        = 'model_data/enigma_classes.txt'
 #--------------------------------------------------------------------------------------------------------------------------------#
-#   trainval_percent用于指定(训练集+验证集)与测试集的比例，默认情况下 (训练集+验证集):测试集 = 9:1
-#   train_percent用于指定(训练集+验证集)中训练集与验证集的比例，默认情况下 训练集:验证集 = 9:1
-#   仅在annotation_mode为0和1的时候有效
+# trainval_percent is used to specify the ratio of (training set + validation set) to test set, by default (training set + validation set): test set = 9:1
+# train_percent is used to specify the ratio of training set to validation set in (training set + validation set), by default training set:validation set = 9:1
+# Only valid when annotation_mode is 0 and 1
 #--------------------------------------------------------------------------------------------------------------------------------#
 trainval_percent    = 0.9
 train_percent       = 0.9
 #-------------------------------------------------------#
-#   指向VOC数据集所在的文件夹
-#   默认指向根目录下的VOC数据集
+# Point to the folder where the VOC dataset is located
+# Default points to the VOC dataset in the root directory
 #-------------------------------------------------------#
 VOCdevkit_path  = 'VOCdevkit'
 
@@ -38,7 +38,7 @@ VOCdevkit_sets  = [('2007', 'train'), ('2007', 'val')]
 classes, _      = get_classes(classes_path)
 
 #-------------------------------------------------------#
-#   统计目标数量
+#   Count the number of targets
 #-------------------------------------------------------#
 photo_nums  = np.zeros(len(VOCdevkit_sets))
 nums        = np.zeros(len(classes))
@@ -64,7 +64,7 @@ def convert_annotation(year, image_id, list_file):
 if __name__ == "__main__":
     random.seed(0)
     if " " in os.path.abspath(VOCdevkit_path):
-        raise ValueError("数据集存放的文件夹路径与图片名称中不可以存在空格，否则会影响正常的模型训练，请注意修改。")
+        raise ValueError("There must be no spaces in the folder path and image name where the dataset is stored, otherwise it will affect the normal model training, please pay attention to modification.")
 
     if annotation_mode == 0 or annotation_mode == 1:
         print("Generate txt in ImageSets.")
@@ -144,10 +144,10 @@ if __name__ == "__main__":
         printTable(tableData, colWidths)
 
         if photo_nums[0] <= 500:
-            print("训练集数量小于500，属于较小的数据量，请注意设置较大的训练世代（Epoch）以满足足够的梯度下降次数（Step）。")
+            print("The number of training sets is less than 500, which is a small amount of data. Please pay attention to setting a larger training generation (epoch) to meet enough gradient descent times (step).")
 
         if np.sum(nums) == 0:
-            print("在数据集中并未获得任何目标，请注意修改classes_path对应自己的数据集，并且保证标签名字正确，否则训练将会没有任何效果！")
-            print("在数据集中并未获得任何目标，请注意修改classes_path对应自己的数据集，并且保证标签名字正确，否则训练将会没有任何效果！")
-            print("在数据集中并未获得任何目标，请注意修改classes_path对应自己的数据集，并且保证标签名字正确，否则训练将会没有任何效果！")
-            print("（重要的事情说三遍）。")
+            print("There is no target in the data set, please pay attention to modify the classes path to correspond to your own data set, and ensure that the label name is correct, otherwise the training will have no effect!")
+            print("There is no target in the data set, please pay attention to modify the classes path to correspond to your own data set, and ensure that the label name is correct, otherwise the training will have no effect!")
+            print("There is no target in the data set, please pay attention to modify the classes path to correspond to your own data set, and ensure that the label name is correct, otherwise the training will have no effect!")
+            print("(Important things said three times).")

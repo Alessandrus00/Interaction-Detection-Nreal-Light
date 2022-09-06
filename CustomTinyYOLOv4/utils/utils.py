@@ -11,8 +11,8 @@ def compose(*funcs):
         raise ValueError('Composition of empty sequence not supported.')
 
 #---------------------------------------------------------#
-#   将图像转换成RGB图像，防止灰度图在预测时报错。
-#   代码仅仅支持RGB图像的预测，所有其它类型的图像都会转化成RGB
+# Convert the image to an RGB image to avoid errors in predicting grayscale images.
+# The code only supports RGB image prediction, all other image types will be converted to RGB
 #---------------------------------------------------------#
 def cvtColor(image):
     if len(np.shape(image)) == 3 and np.shape(image)[2] == 3:
@@ -22,7 +22,7 @@ def cvtColor(image):
         return image 
 
 #---------------------------------------------------#
-#   对输入图像进行resize
+# resize the input image
 #---------------------------------------------------#
 def resize_image(image, size, letterbox_image):
     iw, ih  = image.size
@@ -40,7 +40,7 @@ def resize_image(image, size, letterbox_image):
     return new_image
 
 #---------------------------------------------------#
-#   获得类
+#   take class
 #---------------------------------------------------#
 def get_classes(classes_path):
     with open(classes_path, encoding='utf-8') as f:
@@ -49,7 +49,7 @@ def get_classes(classes_path):
     return class_names, len(class_names)
 
 #---------------------------------------------------#
-#   获得先验框
+#   get a box a priori
 #---------------------------------------------------#
 def get_anchors(anchors_path):
     '''loads the anchors from a file'''
@@ -84,7 +84,7 @@ def net_flops(model, table=False, print_result=True):
         print('=' * 120)
         
     #---------------------------------------------------#
-    #   总的FLOPs
+    #   total flop
     #---------------------------------------------------#
     t_flops = 0
     factor  = 1e9
@@ -92,12 +92,12 @@ def net_flops(model, table=False, print_result=True):
     for l in model.layers:
         try:
             #--------------------------------------#
-            #   所需参数的初始化定义
+            #   Initial definition of the required parameters
             #--------------------------------------#
             o_shape, i_shape, strides, ks, filters = ('', '', ''), ('', '', ''), (1, 1), (0, 0), 0
             flops   = 0
             #--------------------------------------#
-            #   获得层的名字
+            #   get the name of the layer
             #--------------------------------------#
             name    = l.name
             
@@ -106,28 +106,28 @@ def net_flops(model, table=False, print_result=True):
                 o_shape = l.get_output_shape_at(0)[1:4]
                 
             #--------------------------------------#
-            #   Reshape层
+            #   Reshape the level
             #--------------------------------------#
             elif ('Reshape' in str(l)):
                 i_shape = l.get_input_shape_at(0)[1:4]
                 o_shape = l.get_output_shape_at(0)[1:4]
 
             #--------------------------------------#
-            #   填充层
+            #   fill level
             #--------------------------------------#
             elif ('Padding' in str(l)):
                 i_shape = l.get_input_shape_at(0)[1:4]
                 o_shape = l.get_output_shape_at(0)[1:4]
 
             #--------------------------------------#
-            #   平铺层
+            #   layer of tiles
             #--------------------------------------#
             elif ('Flatten' in str(l)):
                 i_shape = l.get_input_shape_at(0)[1:4]
                 o_shape = l.get_output_shape_at(0)[1:4]
                 
             #--------------------------------------#
-            #   激活函数层
+            #   activation function level
             #--------------------------------------#
             elif 'Activation' in str(l):
                 i_shape = l.get_input_shape_at(0)[1:4]
@@ -144,14 +144,14 @@ def net_flops(model, table=False, print_result=True):
                     flops   += i_shape[0] * i_shape[1] * i_shape[2]
                     
             #--------------------------------------#
-            #   池化层
+            #   pooling layer
             #--------------------------------------#
             elif 'MaxPooling' in str(l):
                 i_shape = l.get_input_shape_at(0)[1:4]
                 o_shape = l.get_output_shape_at(0)[1:4]
                     
             #--------------------------------------#
-            #   池化层
+            #   pooling layer
             #--------------------------------------#
             elif ('AveragePooling' in str(l) and 'Global' not in str(l)):
                 strides = l.strides
@@ -164,7 +164,7 @@ def net_flops(model, table=False, print_result=True):
                     flops   += o_shape[0] * o_shape[1] * o_shape[2]
 
             #--------------------------------------#
-            #   全局池化层
+            #   livello di pooling globale
             #--------------------------------------#
             elif ('AveragePooling' in str(l) and 'Global' in str(l)):
                 for i in range(len(l._inbound_nodes)):
@@ -174,7 +174,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += (i_shape[0] * i_shape[1] + 1) * i_shape[2]
                 
             #--------------------------------------#
-            #   标准化层
+            #   level of normalization
             #--------------------------------------#
             elif ('BatchNormalization' in str(l)):
                 for i in range(len(l._inbound_nodes)):
@@ -189,7 +189,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += temp_flops
                 
             #--------------------------------------#
-            #   全连接层
+            #   fully connected layer
             #--------------------------------------#
             elif ('Dense' in str(l)):
                 for i in range(len(l._inbound_nodes)):
@@ -207,7 +207,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += temp_flops
 
             #--------------------------------------#
-            #   普通卷积层
+            #   Ordinary convolutional layer
             #--------------------------------------#
             elif ('Conv2D' in str(l) and 'DepthwiseConv2D' not in str(l) and 'SeparableConv2D' not in str(l)):
                 strides = l.strides
@@ -224,7 +224,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += filters * o_shape[0] * o_shape[1] * (ks[0] * ks[1] * i_shape[2] + bias)
 
             #--------------------------------------#
-            #   逐层卷积层
+            #   Convolutional layers layer by layer
             #--------------------------------------#
             elif ('Conv2D' in str(l) and 'DepthwiseConv2D' in str(l) and 'SeparableConv2D' not in str(l)):
                 strides = l.strides
@@ -241,7 +241,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += filters * o_shape[0] * o_shape[1] * (ks[0] * ks[1] + bias)
                 
             #--------------------------------------#
-            #   深度可分离卷积层
+            #   Convolutional layers separable in depth
             #--------------------------------------#
             elif ('Conv2D' in str(l) and 'DepthwiseConv2D' not in str(l) and 'SeparableConv2D' in str(l)):
                 strides = l.strides
@@ -257,7 +257,7 @@ def net_flops(model, table=False, print_result=True):
                     flops += i_shape[2] * o_shape[0] * o_shape[1] * (ks[0] * ks[1] + bias) + \
                              filters * o_shape[0] * o_shape[1] * (1 * 1 * i_shape[2] + bias)
             #--------------------------------------#
-            #   模型中有模型时
+            #  When there is a model in the model
             #--------------------------------------#
             elif 'Model' in str(l):
                 flops = net_flops(l, print_result=False)

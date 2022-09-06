@@ -15,45 +15,45 @@ from utils.utils_bbox import DecodeBox
 class YOLO(object):
     _defaults = {
         #--------------------------------------------------------------------------#
-        #   使用自己训练好的模型进行预测一定要修改model_path和classes_path！
-        #   model_path指向logs文件夹下的权值文件，classes_path指向model_data下的txt
+        # Use your own trained model for prediction, be sure to modify model_path and classes_path!
+        # model_path points to the weights file under the logs folder, classes_path points to the txt under model_data
         #
-        #   训练好后logs文件夹下存在多个权值文件，选择验证集损失较低的即可。
-        #   验证集损失较低不代表mAP较高，仅代表该权值在验证集上泛化性能较好。
-        #   如果出现shape不匹配，同时要注意训练时的model_path和classes_path参数的修改
+        # After training, there are multiple weight files in the logs folder, and you can select the validation set with lower loss.
+        # The lower loss of the validation set does not mean that the mAP is higher, it only means that the weight has better generalization performance on the validation set.
+        # If the shape does not match, pay attention to the modification of the model_path and classes_path parameters during training
         #--------------------------------------------------------------------------#
         "model_path"        : '',
         "classes_path"      : 'model_data/enigma_classes.txt',
         #---------------------------------------------------------------------#
-        #   anchors_path代表先验框对应的txt文件，一般不修改。
-        #   anchors_mask用于帮助代码找到对应的先验框，一般不修改。
+        # anchors_path represents the txt file corresponding to the a priori box, which is generally not modified.
+        # anchors_mask is used to help the code find the corresponding a priori box and is generally not modified.
         #---------------------------------------------------------------------#
         "anchors_path"      : 'model_data/yolo_anchors.txt',
         "anchors_mask"      : [[3,4,5], [1,2,3]],
         #-------------------------------#
-        #   所使用的注意力机制的类型
-        #   phi = 0为不使用注意力机制
-        #   phi = 1为SE
-        #   phi = 2为CBAM
-        #   phi = 3为ECA
+        # The type of attention mechanism used
+        # phi = 0 to not use the attention mechanism
+        # phi = 1 is SE
+        # phi = 2 for CBAM
+        # phi = 3 for ECA
         #-------------------------------#
         "phi"               : 0,  
         #---------------------------------------------------------------------#
-        #   输入图片的大小，必须为32的倍数。
+        #   The size of the input image, which must be a multiple of 32.
         #---------------------------------------------------------------------#
         "input_shape"       : [416, 416],
         #---------------------------------------------------------------------#
-        #   只有得分大于置信度的预测框会被保留下来
+        #   Only prediction boxes with scores greater than confidence will be kept
         #---------------------------------------------------------------------#
         "confidence"        : 0.5,
         #---------------------------------------------------------------------#
-        #   非极大抑制所用到的nms_iou大小
+        #   nms iou size used for non-maximal suppression
         #---------------------------------------------------------------------#
         "nms_iou"           : 0.3,
         "max_boxes"         : 100,
         #---------------------------------------------------------------------#
-        #   该变量用于控制是否使用letterbox_image对输入图像进行不失真的resize，
-        #   在多次测试后，发现关闭letterbox_image直接resize的效果更好
+        # This variable is used to control whether to use letterbox_image to resize the input image without distortion,
+        # After many tests, it is found that the direct resize effect of closing letterbox_image is better
         #---------------------------------------------------------------------#
         "letterbox_image"   : False,
     }
@@ -66,7 +66,7 @@ class YOLO(object):
             return "Unrecognized attribute name '" + n + "'"
 
     #---------------------------------------------------#
-    #   初始化yolo
+    #   initialize yolo
     #---------------------------------------------------#
     def __init__(self, **kwargs):
         self.__dict__.update(self._defaults)
@@ -75,13 +75,13 @@ class YOLO(object):
             self._defaults[name] = value 
             
         #---------------------------------------------------#
-        #   获得种类和先验框的数量
+        #   Get the number of kinds and a priori boxes
         #---------------------------------------------------#
         self.class_names, self.num_classes = get_classes(self.classes_path)
         self.anchors, self.num_anchors     = get_anchors(self.anchors_path)
 
         #---------------------------------------------------#
-        #   画框设置不同的颜色
+        #   Picture frame set different colors
         #---------------------------------------------------#
         hsv_tuples = [(x / self.num_classes, 1., 1.) for x in range(self.num_classes)]
         self.colors = list(map(lambda x: colorsys.hsv_to_rgb(*x), hsv_tuples))
@@ -94,7 +94,7 @@ class YOLO(object):
         show_config(**self._defaults)
 
     #---------------------------------------------------#
-    #   载入模型
+    #   load model
     #---------------------------------------------------#
     def generate(self):
         model_path = os.path.expanduser(self.model_path)
@@ -104,8 +104,8 @@ class YOLO(object):
         self.yolo_model.load_weights(self.model_path)
         print('{} model, anchors, and classes loaded.'.format(model_path))
         #---------------------------------------------------------#
-        #   在yolo_eval函数中，我们会对预测结果进行后处理
-        #   后处理的内容包括，解码、非极大抑制、门限筛选等
+        # In the yolo_eval function, we will post-process the prediction results
+        # The content of post-processing includes decoding, non-maximum suppression, threshold filtering, etc.
         #---------------------------------------------------------#
         boxes, scores, classes = DecodeBox(
             self.yolo_model.output, 
@@ -122,26 +122,26 @@ class YOLO(object):
         return boxes, scores, classes
 
     #---------------------------------------------------#
-    #   检测图片
+    #   Detect pictures
     #---------------------------------------------------#
     def detect_image(self, image, crop = False, count = False):
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
-        #   代码仅仅支持RGB图像的预测，所有其它类型的图像都会转化成RGB
+        # Convert the image to an RGB image here to prevent an error in the prediction of the grayscale image.
+        # The code only supports prediction of RGB images, all other types of images will be converted to RGB
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        # Add gray bars to the image to achieve undistorted resize
+        # You can also directly resize for identification
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        # Add the batch_size dimension and normalize it
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
 
         #---------------------------------------------------------#
-        #   将图像输入网络当中进行预测！
+        #   Feed the image into the network to make predictions!
         #---------------------------------------------------------#
         out_boxes, out_scores, out_classes = self.sess.run(
             [self.boxes, self.scores, self.classes],
@@ -152,12 +152,12 @@ class YOLO(object):
 
         print('Found {} boxes for {}'.format(len(out_boxes), 'img'))
         #---------------------------------------------------------#
-        #   设置字体与边框厚度
+        #   Set font and border thickness
         #---------------------------------------------------------#
         font        = ImageFont.truetype(font='model_data/simhei.ttf', size=np.floor(3e-2 * image.size[1] + 0.5).astype('int32'))
         thickness   = int(max((image.size[0] + image.size[1]) // np.mean(self.input_shape), 1))
         #---------------------------------------------------------#
-        #   计数
+        #   count
         #---------------------------------------------------------#
         if count:
             print("top_label:", out_classes)
@@ -169,7 +169,7 @@ class YOLO(object):
                 classes_nums[i] = num
             print("classes_nums:", classes_nums)
         #---------------------------------------------------------#
-        #   是否进行目标的裁剪
+        #   Whether to clip the target
         #---------------------------------------------------------#
         if crop:
             for i, c in list(enumerate(out_classes)):
@@ -186,7 +186,7 @@ class YOLO(object):
                 crop_image.save(os.path.join(dir_save_path, "crop_" + str(i) + ".png"), quality=95, subsampling=0)
                 print("save crop_" + str(i) + ".png to " + dir_save_path)
         #---------------------------------------------------------#
-        #   图像绘制
+        #   image drawing
         #---------------------------------------------------------#
         for i, c in list(enumerate(out_classes)):
             predicted_class = self.class_names[int(c)]
@@ -221,22 +221,22 @@ class YOLO(object):
 
     def get_FPS(self, image, test_interval):
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
-        #   代码仅仅支持RGB图像的预测，所有其它类型的图像都会转化成RGB
+        # Convert the image to an RGB image here to prevent an error in the prediction of the grayscale image.
+        # The code only supports prediction of RGB images, all other types of images will be converted to RGB
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        # Add gray bars to the image to achieve undistorted resize
+        # You can also directly resize for identification
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        #  Add the batch size dimension and normalize it
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
         
         #---------------------------------------------------------#
-        #   将图像输入网络当中进行预测！
+        #   Feed the image into the network to make predictions!
         #---------------------------------------------------------#
         out_boxes, out_scores, out_classes = self.sess.run(
             [self.boxes, self.scores, self.classes],
@@ -264,17 +264,17 @@ class YOLO(object):
             y = 1.0 / (1.0 + np.exp(-x))
             return y
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
-        #   代码仅仅支持RGB图像的预测，所有其它类型的图像都会转化成RGB
+        # Convert the image to an RGB image here to prevent an error in the prediction of the grayscale image.
+        # The code only supports prediction of RGB images, all other types of images will be converted to RGB
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        # Add gray bars to the image to achieve undistorted resize
+        # You can also directly resize for identification
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        #   Add the batch size dimension and normalize it
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
         
@@ -303,16 +303,16 @@ class YOLO(object):
     def get_map_txt(self, image_id, image, class_names, map_out_path):
         f = open(os.path.join(map_out_path, "detection-results/"+image_id+".txt"),"w") 
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
+        #   Convert the image to an rgb image here to prevent an error in the prediction of the grayscale image.
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        # Add gray bars to the image to achieve undistorted resize
+        # You can also directly resize for identification
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1],self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        #   Add the batch size dimension and normalize it
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
 

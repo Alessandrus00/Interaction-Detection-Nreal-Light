@@ -12,39 +12,39 @@ from utils.utils import cvtColor, preprocess_input, resize_image
 from yolo import YOLO
 
 #----------------------------------------------------------------------------#
-#   map_mode用于指定该文件运行时计算的内容
-#   map_mode为0代表整个map计算流程，包括获得预测结果、计算map。
-#   map_mode为1代表仅仅获得预测结果。
-#   map_mode为2代表仅仅获得计算map。
+#   map_mode viene utilizzato per specificare cosa viene calcolato quando viene eseguito il file
+# map_mode è 0 per rappresentare l'intero processo di calcolo della mappa, compreso l'ottenimento del risultato della previsione e il calcolo della mappa.
+# map_mode è 1 significa che si ottiene solo il risultato della previsione.
+# map_mode di 2 significa che si ottiene solo la mappa di calcolo.
 #--------------------------------------------------------------------------#
 map_mode            = 0
 #-------------------------------------------------------#
-#   指向了验证集标签与图片路径
+#   Punta all'etichetta del set di convalida e al percorso dell'immagine
 #-------------------------------------------------------#
 cocoGt_path         = 'coco_dataset/annotations/instances_val2017.json'
 dataset_img_path    = 'coco_dataset/val2017'
 #-------------------------------------------------------#
-#   结果输出的文件夹，默认为map_out
+#   La cartella per l'output dei risultati, l'impostazione predefinita è mappa
 #-------------------------------------------------------#
 temp_save_path      = 'map_out/coco_eval'
 
 class mAP_YOLO(YOLO):
     #---------------------------------------------------#
-    #   检测图片
+    #   Rileva immagini
     #---------------------------------------------------#
     def detect_image(self, image_id, image, results, clsid2catid):
         #---------------------------------------------------------#
-        #   在这里将图像转换成RGB图像，防止灰度图在预测时报错。
-        #   代码仅仅支持RGB图像的预测，所有其它类型的图像都会转化成RGB
+        #   Converti qui l'immagine in un'immagine RGB per evitare che l'immagine in scala di grigi commetta errori durante la previsione.
+        # Il codice supporta solo la previsione delle immagini RGB, tutti gli altri tipi di immagini verranno convertiti in RGB
         #---------------------------------------------------------#
         image       = cvtColor(image)
         #---------------------------------------------------------#
-        #   给图像增加灰条，实现不失真的resize
-        #   也可以直接resize进行识别
+        #   Aggiungi barre grigie all'immagine per ottenere un ridimensionamento senza distorsioni
+        # Puoi anche ridimensionare direttamente per l'identificazione
         #---------------------------------------------------------#
         image_data  = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
         #---------------------------------------------------------#
-        #   添加上batch_size维度，并进行归一化
+        #   Aggiungi la dimensione della dimensione del batch e normalizzala
         #---------------------------------------------------------#
         image_data  = np.expand_dims(preprocess_input(np.array(image_data, dtype='float32')), 0)
 

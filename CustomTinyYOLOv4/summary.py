@@ -1,5 +1,5 @@
 #--------------------------------------------#
-#   该部分代码用于看网络结构
+# This part of the code is used to see the network structure
 #--------------------------------------------#
 from nets.yolo import yolo_body
 

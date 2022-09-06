@@ -11,67 +11,67 @@ from utils.utils_map import get_coco_map, get_map
 
 if __name__ == "__main__":
     '''
-    Recall和Precision不像AP是一个面积的概念，因此在门限值（Confidence）不同时，网络的Recall和Precision值是不同的。
-    默认情况下，本代码计算的Recall和Precision代表的是当门限值（Confidence）为0.5时，所对应的Recall和Precision值。
+    Unlike AP, Recall and Precision are a concept of area, so when the threshold value (Confidence) is different, the Recall and Precision values ​​of the network are different.
+    By default, the Recall and Precision calculated by this code represent the corresponding Recall and Precision values ​​when the threshold value (Confidence) is 0.5.
 
-    受到mAP计算原理的限制，网络在计算mAP时需要获得近乎所有的预测框，这样才可以计算不同门限条件下的Recall和Precision值
-    因此，本代码获得的map_out/detection-results/里面的txt的框的数量一般会比直接predict多一些，目的是列出所有可能的预测框，
+    Restricted by the calculation principle of mAP, the network needs to obtain almost all prediction frames when calculating mAP, so that the Recall and Precision values ​​under different threshold conditions can be calculated.
+    Therefore, the number of txt boxes in map_out/detection-results/obtained by this code is generally more than the direct predict, the purpose is to list all possible prediction boxes,
     '''
     #------------------------------------------------------------------------------------------------------------------#
-    #   map_mode用于指定该文件运行时计算的内容
-    #   map_mode为0代表整个map计算流程，包括获得预测结果、获得真实框、计算VOC_map。
-    #   map_mode为1代表仅仅获得预测结果。
-    #   map_mode为2代表仅仅获得真实框。
-    #   map_mode为3代表仅仅计算VOC_map。
-    #   map_mode为4代表利用COCO工具箱计算当前数据集的0.50:0.95map。需要获得预测结果、获得真实框后并安装pycocotools才行
+    #   map_mode is used to specify what is calculated when the file is run
+    # map_mode is 0 to represent the entire map calculation process, including getting the forecast result, getting the real frame, and calculating the VOC_map.
+    # map_mode is 1 it means you get the forecast result only.
+    # map_mode of 2 means you only get the real box.
+    # map_mode is 3 to calculate VOC_map only.
+    # map_mode is 4 to use the COCO toolbox to calculate map 0.50: 0.95 of the current dataset. You have to get the forecast results, get the real box and install pycocotools
     #-------------------------------------------------------------------------------------------------------------------#
     map_mode        = 0
     #--------------------------------------------------------------------------------------#
-    #   此处的classes_path用于指定需要测量VOC_map的类别
-    #   一般情况下与训练和预测所用的classes_path一致即可
+    #   The classes_path here is used to specify the classes that need to measure the VOC_map
+    # In general, it can be consistent with the classes_path used for training and prediction
     #--------------------------------------------------------------------------------------#
     classes_path    = 'model_data/enigma_classes.txt'
     #--------------------------------------------------------------------------------------#
-    #   MINOVERLAP用于指定想要获得的mAP0.x，mAP0.x的意义是什么请同学们百度一下。
-    #   比如计算mAP0.75，可以设定MINOVERLAP = 0.75。
+    #   MINOVERLAP is used to specify the mAP0.x you want to get. What is the meaning of mAP0.x? Please Baidu.
+    # For example, to calculate mAP0.75, you can set MINOVERLAP = 0.75.
     #
-    #   当某一预测框与真实框重合度大于MINOVERLAP时，该预测框被认为是正样本，否则为负样本。
-    #   因此MINOVERLAP的值越大，预测框要预测的越准确才能被认为是正样本，此时算出来的mAP值越低，
+    # When the coincidence of a predicted frame and the real frame is greater than MINOVERLAP, the predicted frame is considered as a positive sample, otherwise it is a negative sample.
+    # Therefore, the larger the value of MINOVERLAP, the more accurate the prediction frame needs to be in order to be considered a positive sample, and the lower the mAP value calculated at this time,
     #--------------------------------------------------------------------------------------#
     MINOVERLAP      = 0.5
     #--------------------------------------------------------------------------------------#
-    #   受到mAP计算原理的限制，网络在计算mAP时需要获得近乎所有的预测框，这样才可以计算mAP
-    #   因此，confidence的值应当设置的尽量小进而获得全部可能的预测框。
-    #   
-    #   该值一般不调整。因为计算mAP需要获得近乎所有的预测框，此处的confidence不能随便更改。
-    #   想要获得不同门限值下的Recall和Precision值，请修改下方的score_threhold。
+    #  Restricted by the mAP calculation principle, the network needs to obtain almost all prediction frames when calculating mAP, so that mAP can be calculated
+    # Therefore, the value of confidence should be set as small as possible to obtain all possible prediction boxes.
+    #
+    # This value is generally not adjusted. Because the calculation of mAP needs to obtain almost all the prediction boxes, the confidence here cannot be changed arbitrarily.
+    # To get the Recall and Precision values ​​under different thresholds, please modify the score_threhold below.
     #--------------------------------------------------------------------------------------#
     confidence      = 0.001
     #--------------------------------------------------------------------------------------#
-    #   预测时使用到的非极大抑制值的大小，越大表示非极大抑制越不严格。
-    #   
-    #   该值一般不调整。
+    #   The size of the non-maximum suppression value used in prediction. The larger the value, the less strict the non-maximum suppression is.
+    #
+    # This value is generally not adjusted.
     #--------------------------------------------------------------------------------------#
     nms_iou         = 0.5
     #---------------------------------------------------------------------------------------------------------------#
-    #   Recall和Precision不像AP是一个面积的概念，因此在门限值不同时，网络的Recall和Precision值是不同的。
-    #   
-    #   默认情况下，本代码计算的Recall和Precision代表的是当门限值为0.5（此处定义为score_threhold）时所对应的Recall和Precision值。
-    #   因为计算mAP需要获得近乎所有的预测框，上面定义的confidence不能随便更改。
-    #   这里专门定义一个score_threhold用于代表门限值，进而在计算mAP时找到门限值对应的Recall和Precision值。
+    #   Unlike AP, Recall and Precision are a concept of area, so when the threshold value is different, the Recall and Precision values ​​of the network are different.
+    #
+    # By default, the Recall and Precision calculated by this code represent the Recall and Precision values ​​when the threshold value is 0.5 (defined here as score_threhold).
+    # Because the calculation of mAP needs to obtain almost all the prediction boxes, the confidence defined above cannot be changed casually.
+    # Here, a score_threhold is specially defined to represent the threshold value, and then the Recall and Precision values ​​corresponding to the threshold value are found when calculating mAP.
     #---------------------------------------------------------------------------------------------------------------#
     score_threhold  = 0.5
     #-------------------------------------------------------#
-    #   map_vis用于指定是否开启VOC_map计算的可视化
+    #   Map vis is used to specify whether to enable the visualization of voc map calculations
     #-------------------------------------------------------#
     map_vis         = False
     #-------------------------------------------------------#
-    #   指向VOC数据集所在的文件夹
-    #   默认指向根目录下的VOC数据集
+    #   Point to the folder where the VOC dataset is located
+    # Default points to the VOC dataset in the root directory
     #-------------------------------------------------------#
     VOCdevkit_path  = 'VOCdevkit'
     #-------------------------------------------------------#
-    #   结果输出的文件夹，默认为map_out
+    #   The folder for the result output, the default is map out
     #-------------------------------------------------------#
     map_out_path    = 'map_out'
 
