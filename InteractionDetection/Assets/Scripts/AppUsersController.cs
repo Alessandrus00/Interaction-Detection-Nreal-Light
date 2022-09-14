@@ -33,7 +33,8 @@ public class AppUsersController : MonoBehaviour
     bool _isLookingPlane = false;
 
     // offset needed for a better interaction detection
-    float _distanceThreshold = 0.2f;
+    //float _distanceThreshold = 0.2f;
+    float _distanceThreshold = 0.05f;
 
     int [] classIndexes;
 

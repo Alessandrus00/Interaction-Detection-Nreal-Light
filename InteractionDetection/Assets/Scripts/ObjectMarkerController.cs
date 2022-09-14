@@ -40,7 +40,8 @@ public class ObjectMarkerController : MonoBehaviour
     public bool SetPosition(in Detection d){
         // get info from the bbox
         var x = d.x;
-        var y = (1-d.y);
+        //var y = (1-d.y);
+        var y = d.y;
         var w = d.w;
         var h = d.h;
 

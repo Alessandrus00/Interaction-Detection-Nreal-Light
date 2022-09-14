@@ -286,7 +286,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1.5127258, y: -17.140064, z: 1.1317139, w: 4.246887}
+  m_margin: {x: 12.48526, y: -17.140064, z: 15.9609375, w: 12.694946}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -399,7 +399,7 @@ RectTransform:
   m_GameObject: {fileID: 4506276250078039590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 18}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.008380305, y: 0.008380305, z: 0.008380305}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4506276248948011651}
@@ -409,7 +409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.042103, y: 0}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4506276250078039586
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c7906c48f0cd94393196c6c9f7cab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anchor: 4
+  Anchor: 1
   FollowSpeed: 5
-  Offset: {x: 0.1, y: 0.1}
+  Offset: {x: 0.1, y: 1.5}
 --- !u!1 &4506276250232013058
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 78.01}
+  m_AnchoredPosition: {x: -52, y: 78.01}
   m_SizeDelta: {x: 1280, y: 236.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4506276250232013183
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.2552185, y: -65.025665, z: 3.9534152, w: 161.51863}
+  m_margin: {x: 69.2897, y: -65.025665, z: -31.008942, w: 161.51863}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
