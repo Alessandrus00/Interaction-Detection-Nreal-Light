@@ -22,7 +22,7 @@ To create the system above, it was created an android application for the Nreal 
 Once an interaction has been detected it will be shown a text and a video information. The text answers the questions "What is this object?" and "What is this object used for?". The video shows a specific use case of the object. Below there is an example of application usage.
 
 <p align="center">
-  <img src="docs/img/tocco_cacciavite.gif" width="60%" height="auto"/>
+  <img src="docs/img/sessione_utente.gif" width="80%" height="auto"/>
 </p>
 
 # Quickstart
