@@ -85,6 +85,8 @@ public class AppController : MonoBehaviour
     bool CheckHandDistance(ObjectMarkerController marker, HandEnum hand){
         // get marker position
         var center = marker.GetCenterPos();
+        var classIndx = marker.GetTargetIndex();
+        var threshold = _distanceThreshold;
 
         //check if the hand is visible
         if(_hand.IsVisible(hand)){
@@ -96,12 +98,16 @@ public class AppController : MonoBehaviour
             var ringPos =_hand.GetKeyPointPosition(hand, HandJointID.RingTip);
             var pinkyPos =_hand.GetKeyPointPosition(hand, HandJointID.PinkyTip);
 
-            if(Vector3.Distance(center,palmPos) <= _distanceThreshold) return true;
-            if(Vector3.Distance(center,thumbPos) <= _distanceThreshold) return true;
-            if(Vector3.Distance(center,indexPos) <= _distanceThreshold) return true;
-            if(Vector3.Distance(center,middlePos) <= _distanceThreshold) return true;
-            if(Vector3.Distance(center,ringPos) <= _distanceThreshold) return true;
-            if(Vector3.Distance(center,pinkyPos) <= _distanceThreshold) return true;
+            // to prevent missed interactions due to markers inside big objects
+            if(Objects.labels[classIndx] == "Oscilloscopio" || Objects.labels[classIndx] == "Alimentatore")
+                threshold = threshold * 2;
+
+            if(Vector3.Distance(center,palmPos) <= threshold) return true;
+            if(Vector3.Distance(center,thumbPos) <= threshold) return true;
+            if(Vector3.Distance(center,indexPos) <= threshold) return true;
+            if(Vector3.Distance(center,middlePos) <= threshold) return true;
+            if(Vector3.Distance(center,ringPos) <= threshold) return true;
+            if(Vector3.Distance(center,pinkyPos) <= threshold) return true;
 
         }
         return false;
